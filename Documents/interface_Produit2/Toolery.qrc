@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/\"/>
+    <qresource prefix="/">
+        <file>Toolery.qss</file>
+    </qresource>
+</RCC>
