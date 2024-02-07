@@ -4,6 +4,7 @@
 admin:
     path: /admin
     controller: App\Controller\AdminController::admin
+
 client:
     path: /client
     controller: App\Controller\ClientController::client
