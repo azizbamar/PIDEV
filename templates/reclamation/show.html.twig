@@ -1,0 +1,46 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Reclamation Index{% endblock %}
+
+{% block profile %}
+    <div class="d-flex align-items-center justify-content-center">
+        <div class="col-md-12">
+            <h1 class="mb-4">Personal Reclamations</h1>
+
+            <table class="table table-bordered table-hover" style="border-radius: 105px;">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reclamation in reclamations %}
+                        <tr>
+                            <td>{{ reclamation.title }}</td>
+                            <td>{{ reclamation.dateReclamation|date('Y-m-d H:i:s') }}</td><td class="text-center">
+                                <div class="btn-group" role="group">
+                                    <a href="{{ path('reclamation', {'id': reclamation.id}) }}" class="btn btn-primary text-white">
+                                        Details
+                                    </a>
+                                    {# Add other action buttons if needed #}
+                                </div>
+                            </td>
+                            
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3" class="text-center">No records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div >
+        <a href="{{ path('app_reclamation_new') }}" class="btn btn-primary">Add reclamation</a>
+    </div>
+    
+            {# Remove the "Create New" button if you want #}
+        </div>
+    </div>
+{% endblock %}

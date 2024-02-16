@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Techie Bootstrap Template - Index</title>
+    <title>Protectini</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -28,10 +28,14 @@
     <link href="{{asset('FrontOffice/css/style.css')}}" rel="stylesheet">
 </head>
 <body>
-{% include "client/header.html.twig" %}
+{% include "client/header.html.twig"%}
+
 <main id="main">
-{% include "client/test.html.twig" %}
-  </main><!-- End #main -->
+        {% block content %}
+    
+    {% endblock %}
+    </main>
+  
 {% include "client/footer.html.twig" %}
 </body>    
 </html>

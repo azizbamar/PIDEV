@@ -1,0 +1,74 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block profile %}
+    <div class="d-flex align-items-center justify-content-center">
+        <div class="col-md-12">
+            <div class="h1">
+                {% if action == 'update' %}
+                    Update Reclamation
+                {% else %}
+                    Create New Reclamation
+                {% endif %}
+            </div>
+
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+            <table class="table" style="margin-top: 3%;">
+                <tbody>
+                    <tr>
+                        <th>{{ form_label(form.title) }}</th>
+                        <td>
+                            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                            {% if form_errors(form.title) %}
+                                <div class="text-danger error-title">
+                                {{ form.title.vars.errors|first.message }}   
+                                </div>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{{ form_label(form.description) }}</th>
+                        <td>
+                            {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': 9}}) }}
+                            {% if form_errors(form.description) %}
+                                <div class="text-danger error-description">
+                                {{ form.description.vars.errors|first.message }}   
+                                </div>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button class="btn btn-primary">
+                {{ button_label|default('Save') }}
+            </button>
+
+            {{ form_end(form) }}
+            <script>
+                // Plain JavaScript code to hide error messages when typing starts
+                document.addEventListener('DOMContentLoaded', function () {
+                    var inputFields = document.querySelectorAll('input, textarea, select');
+
+                    inputFields.forEach(function (input) {
+                        input.addEventListener('input', function () {
+                            var fieldName = this.getAttribute('name');
+
+                            // Adjust the code to handle nested field names
+                            var nestedFieldNameMatch = fieldName.match(/\[([^\]]+)\]/);
+                            if (nestedFieldNameMatch) {
+                                fieldName = nestedFieldNameMatch[1];
+                            }
+
+                            var errorElement = document.querySelector('.error-' + fieldName);
+
+                            if (errorElement) {
+                                errorElement.style.display = 'none';
+                            }
+                        });
+                    });
+                });
+            </script>
+        </div>
+    </div>
+{% endblock %}

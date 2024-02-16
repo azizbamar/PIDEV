@@ -8,3 +8,41 @@ admin:
 client:
     path: /client
     controller: App\Controller\ClientController::client
+register:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+app_login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+app_logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+users-profile:
+    path: /users-profile
+    controller: App\Controller\ProfileController::usersProfile
+editprofile:
+    path: /editprofile
+    controller: App\Controller\ProfileController::editprofile
+# config/routes.yaml
+
+changePassword:
+    path: /changePassword
+    controller: 'App\Controller\ProfileController::changePassword'
+    methods: ['GET', 'POST']
+profile:
+    path: /profile
+    controller: 'App\Controller\ProfileController::profile'
+    methods: ['GET']
+
+# app_user_delete:
+#     path: /delete
+#     controller: App\Controller\UserController::delete
+# app_user_new:
+#     path: /new
+#     controller: App\Controller\UserController::new
+# getAllusers:
+#     path: /getAllusers
+#     controller: App\Controller\UserController::getAllusers
+admincreateuser:
+    path: /admincreateuser
+    controller: App\Controller\UserController::adminCreateUser
