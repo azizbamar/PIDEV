@@ -47,15 +47,18 @@ class MedicalSheet
     #[ORM\JoinColumn(nullable: false)]
     private ?SinisterLife $sinisterLife = null;
 
-    #[ORM\Column(length: 10)]
+    #[ORM\ManyToOne(inversedBy: 'medicalsheetUser')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?string $clientCIN = null;
+    private ?User $userCIN = null;
+
+
 
 
     public function getId(): ?int
     {
         return $this->id;
     }
+
 
     public function getMedicalDiagnosis(): ?string
     {
@@ -177,15 +180,17 @@ class MedicalSheet
         return $this;
     }
 
-    public function getClientCIN(): ?string
+
+    public function getUserCIN(): ?User
     {
-        return $this->clientCIN;
+        return $this->userCIN;
     }
 
-    public function setClientCIN(string $clientCIN): static
+    public function setUserCIN(?User $userCIN): static
     {
-        $this->clientCIN = $clientCIN;
+        $this->userCIN = $userCIN;
 
         return $this;
     }
+
 }

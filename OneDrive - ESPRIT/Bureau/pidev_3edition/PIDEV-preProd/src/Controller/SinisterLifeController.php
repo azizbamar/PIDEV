@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Sinister;
 use App\Entity\SinisterLife;
 use App\Form\SinisterLifeType;
 use App\Repository\SinisterLifeRepository;
@@ -27,9 +28,9 @@ class SinisterLifeController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $sinisterLife = new SinisterLife();
+        $sinisterLife->setDateSinister(new \DateTime());
         $form = $this->createForm(SinisterLifeType::class, $sinisterLife);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($sinisterLife);
             $entityManager->flush();

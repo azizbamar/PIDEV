@@ -18,7 +18,7 @@
                 <th>Hospitalization Period</th>
                 <th>Rehabilitation Period</th>
                 <th>Medical Information</th>
-                <th>Client CIN</th>
+                <th>Client Name</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -35,7 +35,7 @@
                 <td>{{ medical_sheet.hospitalizationPeriod }}</td>
                 <td>{{ medical_sheet.rehabilitationPeriod }}</td>
                 <td>{{ medical_sheet.medicalInformation }}</td>
-                <td>{{ medical_sheet.clientCIN }}</td>
+                <td>{{ medical_sheet.userCIN }}</td>
                 <td>
                     <a href="{{ path('app_medical_sheet_show', {'id': medical_sheet.id}) }}">show</a>
                     <a href="{{ path('app_medical_sheet_edit', {'id': medical_sheet.id}) }}">edit</a>

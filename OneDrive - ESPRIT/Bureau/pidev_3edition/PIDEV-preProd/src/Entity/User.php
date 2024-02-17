@@ -39,9 +39,19 @@ class User
     #[ORM\OneToMany(targetEntity: Sinister::class, mappedBy: 'sinisterUser', orphanRemoval: true)]
     private Collection $theSinisters;
 
+    #[ORM\OneToMany(targetEntity: MedicalSheet::class, mappedBy: 'userCIN', orphanRemoval: true)]
+    private Collection $medicalsheetUser;
+
+    #[ORM\OneToMany(targetEntity: Prescription::class, mappedBy: 'userCIN', orphanRemoval: true)]
+    private Collection $prescriptionUser;
+
+
+
     public function __construct()
     {
         $this->theSinisters = new ArrayCollection();
+        $this->medicalsheetUser = new ArrayCollection();
+        $this->prescriptionUser = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -49,10 +59,12 @@ class User
         return $this->firstName . ' ' . $this->lastName;
     }
 
-    public function __toString2(): string
+    public function getCINtoString(): string
     {
-        return $this->cin ;
+        return (string) $this->cin;
     }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -166,6 +178,66 @@ class User
             // set the owning side to null (unless already changed)
             if ($theSinister->getSinisterUser() === $this) {
                 $theSinister->setSinisterUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MedicalSheet>
+     */
+    public function getMedicalsheetUser(): Collection
+    {
+        return $this->medicalsheetUser;
+    }
+
+    public function addMedicalsheetUser(MedicalSheet $medicalsheetUser): static
+    {
+        if (!$this->medicalsheetUser->contains($medicalsheetUser)) {
+            $this->medicalsheetUser->add($medicalsheetUser);
+            $medicalsheetUser->setUserCIN($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedicalsheetUser(MedicalSheet $medicalsheetUser): static
+    {
+        if ($this->medicalsheetUser->removeElement($medicalsheetUser)) {
+            // set the owning side to null (unless already changed)
+            if ($medicalsheetUser->getUserCIN() === $this) {
+                $medicalsheetUser->setUserCIN(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Prescription>
+     */
+    public function getPrescriptionUser(): Collection
+    {
+        return $this->prescriptionUser;
+    }
+
+    public function addPrescriptionUser(Prescription $prescriptionUser): static
+    {
+        if (!$this->prescriptionUser->contains($prescriptionUser)) {
+            $this->prescriptionUser->add($prescriptionUser);
+            $prescriptionUser->setUserCIN($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrescriptionUser(Prescription $prescriptionUser): static
+    {
+        if ($this->prescriptionUser->removeElement($prescriptionUser)) {
+            // set the owning side to null (unless already changed)
+            if ($prescriptionUser->getUserCIN() === $this) {
+                $prescriptionUser->setUserCIN(null);
             }
         }
 

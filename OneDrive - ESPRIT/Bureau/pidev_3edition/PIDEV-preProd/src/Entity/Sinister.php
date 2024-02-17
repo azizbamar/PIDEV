@@ -10,7 +10,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: SinisterRepository::class)]
 #[ORM\InheritanceType("SINGLE_TABLE")]
 #[ORM\DiscriminatorColumn(name: "sinister_type", type: "string")]
-#[ORM\DiscriminatorMap(["sinister" => "Sinister", "sinisterLife" => "SinisterLife"])]
+/*#[ORM\DiscriminatorMap(["sinister" => "Sinister", "sinisterLife" => "SinisterLife"])]*/
+#[ORM\DiscriminatorMap(array(
+    "sinisterLife" => "SinisterLife"
+))]
 class Sinister
 {
     #[ORM\Id]
@@ -20,7 +23,10 @@ class Sinister
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateSinister = null;
-
+    public function __construct()
+    {
+    $this->dateSinister = new \DateTime();
+    }
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Please enter the location.')]
     private ?string $location = null;
@@ -36,6 +42,9 @@ class Sinister
     #[Assert\NotBlank(message: 'Please enter the status of the sinister.')]
     #[Assert\Choice(choices: ["ongoing", "processed", "closed"])]
     private ?string $statusSinister = null;
+
+
+
     public function getId(): ?int
     {
         return $this->id;

@@ -20,18 +20,19 @@ class Prescription
     }
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $datePrescription = null;
+    private $datePrescription ;
 
-    #[ORM\Column(length: 10)]
-    private ?string $doctorCIN = null;
-
-    #[ORM\Column(length: 10)]
-    private ?string $clientCIN = null;
-
+    public function __construct()
+    {
+        $this->datePrescription = new \DateTime();
+    }
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'Please enter the status of the medications needed.')]
     private ?string $medications = null;
 
     #[ORM\Column(length: 20)]
+    #[Assert\NotBlank(message: 'Please enter the status of the Prescription.')]
+    #[Assert\Choice(choices: ["processed", "unprocessed"])]
     private ?string $statusPrescription = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -39,6 +40,10 @@ class Prescription
 
     #[ORM\Column(nullable: true)]
     private ?int $validityDuration = null;
+
+    #[ORM\ManyToOne(inversedBy: 'prescriptionUser')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $userCIN = null;
 
     public function getdatePrescription(): ?\DateTimeInterface
     {
@@ -52,29 +57,6 @@ class Prescription
         return $this;
     }
 
-    public function getDoctorCIN(): ?string
-    {
-        return $this->doctorCIN;
-    }
-
-    public function setDoctorCIN(string $doctorCIN): static
-    {
-        $this->doctorCIN = $doctorCIN;
-
-        return $this;
-    }
-
-    public function getClientCIN(): ?string
-    {
-        return $this->clientCIN;
-    }
-
-    public function setClientCIN(string $clientCIN): static
-    {
-        $this->clientCIN = $clientCIN;
-
-        return $this;
-    }
 
     public function getMedications(): ?string
     {
@@ -120,6 +102,18 @@ class Prescription
     public function setValidityDuration(?int $validityDuration): static
     {
         $this->validityDuration = $validityDuration;
+
+        return $this;
+    }
+
+    public function getUserCIN(): ?User
+    {
+        return $this->userCIN;
+    }
+
+    public function setUserCIN(?User $userCIN): static
+    {
+        $this->userCIN = $userCIN;
 
         return $this;
     }
