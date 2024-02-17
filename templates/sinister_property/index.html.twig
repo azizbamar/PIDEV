@@ -1,0 +1,40 @@
+{% extends 'admin/index.html.twig' %}
+
+
+{% block title %}SinisterProperty index{% endblock %}
+
+{% block profile %}
+    <h1>SinisterProperty index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Type_degat</th>
+                <th>Description_degat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sinister_property in sinister_properties %}
+            <tr>
+                <td>{{ sinister_property.id }}</td>
+                 <td>{{ sinister_property.dateSinister ? sinister_property.dateSinister|date('Y-m-d') : '' }}</td>
+                <td>{{ sinister_property.typeDegat }}</td>
+                <td>{{ sinister_property.descriptionDegat }}</td>
+                <td>
+                    <a href="{{ path('app_sinister_property_show', {'id': sinister_property.id}) }}">show</a>
+            
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+ 
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}SinisterVehicle{% endblock %}
+
+{% block profile %}
+    <h1>SinisterVehicle</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sinister_vehicle.id }}</td>
+            </tr>
+            <tr>
+                <th>DateSinister</th>
+                <td>{{ sinister_vehicle.dateSinister ? sinister_vehicle.dateSinister|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ sinister_vehicle.location }}</td>
+            </tr>
+            <tr>
+                <th>ImageName</th>
+                <td>{{ sinister_vehicle.imageName }}</td>
+            </tr>
+            <tr>
+                <th>Nom_Conducteur_A</th>
+                <td>{{ sinister_vehicle.NomConducteurA }}</td>
+            </tr>
+            <tr>
+                <th>Nom_Conducteur_B</th>
+                <td>{{ sinister_vehicle.NomConducteurB }}</td>
+            </tr>
+            <tr>
+                <th>Prenom_Conducteur_B</th>
+                <td>{{ sinister_vehicle.PrenomConducteurB }}</td>
+            </tr>
+            <tr>
+                <th>Prenom_Conducteur_A</th>
+                <td>{{ sinister_vehicle.PrenomConducteurA }}</td>
+            </tr>
+            <tr>
+                <th>Adresse_conducteurA</th>
+                <td>{{ sinister_vehicle.AdresseConducteurA }}</td>
+            </tr>
+            <tr>
+                <th>Adresse_conducteurB</th>
+                <td>{{ sinister_vehicle.AdresseConducteurB }}</td>
+            </tr>
+            <tr>
+                <th>Num_permisA</th>
+                <td>{{ sinister_vehicle.numPermisA }}</td>
+            </tr>
+            <tr>
+                <th>Num_permisB</th>
+                <td>{{ sinister_vehicle.numPermisB }}</td>
+            </tr>
+            <tr>
+                <th>Delivre_A</th>
+                <td>{{ sinister_vehicle.delivreA ? sinister_vehicle.delivreA|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Delivre_B</th>
+                <td>{{ sinister_vehicle.delivreB ? sinister_vehicle.delivreB|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Num_contratA</th>
+                <td>{{ sinister_vehicle.numContratA }}</td>
+            </tr>
+            <tr>
+                <th>Num_contratB</th>
+                <td>{{ sinister_vehicle.numContratB }}</td>
+            </tr>
+            <tr>
+                <th>Marque_VehiculeA</th>
+                <td>{{ sinister_vehicle.MarqueVehiculeA }}</td>
+            </tr>
+            <tr>
+                <th>Marque_VehiculeB</th>
+                <td>{{ sinister_vehicle.MarqueVehiculeB }}</td>
+            </tr>
+            <tr>
+                <th>ImmatriculationA</th>
+                <td>{{ sinister_vehicle.ImmatriculationA }}</td>
+            </tr>
+            <tr>
+                <th>ImmatriculationB</th>
+                <td>{{ sinister_vehicle.ImmatriculationB }}</td>
+            </tr>
+            <tr>
+                <th>BvehiculeAssurePar</th>
+                <td>{{ sinister_vehicle.BvehiculeAssurePar }}</td>
+            </tr>
+            <tr>
+                <th>Agence</th>
+                <td>{{ sinister_vehicle.agence }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_constat_index') }}">back to list</a>
+
+    {{ include('constat/_delete_form.html.twig') }}
+{% endblock %}

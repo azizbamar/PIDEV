@@ -1,0 +1,38 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}SinisterVehicle index{% endblock %}
+
+{% block profile %}
+    <h1>SinisterVehicle index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateSinister</th>
+                <th>Location</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sinister_vehicle in sinister_vehicles %}
+            <tr>
+                <td>{{ sinister_vehicle.id }}</td>
+                <td>{{ sinister_vehicle.dateSinister ? sinister_vehicle.dateSinister|date('Y-m-d') : '' }}</td>
+                <td>{{ sinister_vehicle.location }}</td>
+               
+                <td>
+                    <a href="{{ path('app_constat_showAdmin', {'id': sinister_vehicle.id}) }}">show</a>
+                  
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="23">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
