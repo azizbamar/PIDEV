@@ -1,0 +1,39 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}ContratHabitat{% endblock %}
+
+{% block body %}
+<div class="section-title">
+        <h2> Contrat d'assurance habitat</h2>
+     </div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ contrat_habitat.id }}</td>
+            </tr>
+            <tr>
+                <th>Date_debut</th>
+                <td>{{ contrat_habitat.DateDebut ? contrat_habitat.DateDebut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_fin</th>
+                <td>{{ contrat_habitat.DateFin ? contrat_habitat.DateFin|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ contrat_habitat.Description }}</td>
+            </tr>
+            <tr>
+                <th>MatriculeAgent</th>
+                <td>{{ contrat_habitat.MatriculeAgent }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_contrat_habitat_index') }}">back to list</a>
+
+    <a href="{{ path('app_contrat_habitat_edit', {'id': contrat_habitat.id}) }}">edit</a>
+
+    {{ include('contrat_habitat/_delete_form.html.twig') }}
+{% endblock %}

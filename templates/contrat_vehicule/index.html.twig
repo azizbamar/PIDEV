@@ -1,0 +1,49 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}ContratVehicule index{% endblock %}
+
+{% block body %}
+<div class="container">
+  <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+
+    <div class="row justify-content-center"> {# Centrer horizontalement #}
+        <div class="col-md-12"> {# Utilisez col-md-12 pour occuper toute la largeur #}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Date_debut</th>
+                        <th>Date_fin</th>
+                        <th>Description</th>
+                        <th>MatriculeAgent</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for contrat_vehicule in contrat_vehicules %}
+                    <tr>
+                        <td>{{ contrat_vehicule.id }}</td>
+                        <td>{{ contrat_vehicule.DateDebut ? contrat_vehicule.DateDebut|date('Y-m-d') : '' }}</td>
+                        <td>{{ contrat_vehicule.DateFin ? contrat_vehicule.DateFin|date('Y-m-d') : '' }}</td>
+                        <td>{{ contrat_vehicule.Description }}</td>
+                        <td>{{ contrat_vehicule.MatriculeAgent }}</td>
+                        <td>
+                            <a href="{{ path('app_contrat_vehicule_show', {'id': contrat_vehicule.id}) }}">Show</a>
+                            <a href="{{ path('app_contrat_vehicule_edit', {'id': contrat_vehicule.id}) }}">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">No records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ path('app_contrat_vehicule_new') }}">Create new</a>
+        </div>
+    </div>
+    </section>
+</div>
+{% endblock %}

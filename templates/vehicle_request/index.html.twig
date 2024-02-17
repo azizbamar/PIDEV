@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VehicleRequest index{% endblock %}
+
+{% block body %}
+<div class="section-title">
+
+    <h2>VehicleRequest index</h2>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateRequest</th>
+                <th>TypeInsurance</th>
+                <th>Status</th>
+                <th>Marque</th>
+                <th>Modele</th>
+                <th>Fab_year</th>
+                <th>Serial_number</th>
+                <th>Matricul_number</th>
+                <th>Vehicle_price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vehicle_request in vehicle_requests %}
+            <tr>
+                <td>{{ vehicle_request.id }}</td>
+                <td>{{ vehicle_request.dateRequest ? vehicle_request.dateRequest|date('Y-m-d') : '' }}</td>
+                <td>{{ vehicle_request.typeInsurance }}</td>
+                <td>{{ vehicle_request.status }}</td>
+                <td>{{ vehicle_request.Marque }}</td>
+                <td>{{ vehicle_request.Modele }}</td>
+                <td>{{ vehicle_request.FabYear ? vehicle_request.FabYear|date('Y-m-d') : '' }}</td>
+                <td>{{ vehicle_request.serialNumber }}</td>
+                <td>{{ vehicle_request.matriculNumber }}</td>
+                <td>{{ vehicle_request.vehiclePrice }}</td>
+                <td>
+                    <a href="{{ path('app_vehicle_request_show', {'id': vehicle_request.id}) }}">show</a>
+                    <a href="{{ path('app_vehicle_request_edit', {'id': vehicle_request.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_vehicle_request_new') }}">Create new</a>
+{% endblock %}

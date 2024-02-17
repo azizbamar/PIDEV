@@ -1,0 +1,56 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}PropretyRequest index{% endblock %}
+
+{% block body %}
+<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+
+ <div class="row justify-content-center">
+        <div class="col-md-10 offset-md-1">
+            <div class="card w-300 h-300">
+                <div class="card-body">
+                    <h5 class="card-title"> Contrats habitat</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>DateRequest</th>
+                                <th>TypeInsurance</th>
+                                <th>Status</th>
+                                <th>PropertyForme</th>
+                                <th>NumberRooms</th>
+                                <th>Address</th>
+                                <th>PropertyValue</th>
+                                <th>Surface</th>
+                                <th>actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for proprety_request in proprety_requests %}
+                            <tr>
+                                <td>{{ proprety_request.id }}</td>
+                                <td>{{ proprety_request.dateRequest ? proprety_request.dateRequest|date('Y-m-d') : '' }}</td>
+                                <td>{{ proprety_request.typeInsurance }}</td>
+                                <td>{{ proprety_request.status }}</td>
+                                <td>{{ proprety_request.PropertyForme }}</td>
+                                <td>{{ proprety_request.NumberRooms }}</td>
+                                <td>{{ proprety_request.Address }}</td>
+                                <td>{{ proprety_request.PropertyValue }}</td>
+                                <td>{{ proprety_request.Surface }}</td>
+                                <td>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="10">no records found</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+{% endblock %}

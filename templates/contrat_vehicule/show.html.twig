@@ -1,0 +1,42 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}ContratVehicule{% endblock %}
+
+{% block body %}
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+<div class="row row g-3">
+    <h1>Contrat Vehicule {{ contrat_vehicule.id }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ contrat_vehicule.id }}</td>
+            </tr>
+            <tr>
+                <th>Date_debut</th>
+                <td>{{ contrat_vehicule.DateDebut ? contrat_vehicule.DateDebut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_fin</th>
+                <td>{{ contrat_vehicule.DateFin ? contrat_vehicule.DateFin|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ contrat_vehicule.Description|raw|html_entity_decode  }}</td>
+            </tr>
+            <tr>
+                <th>MatriculeAgent</th>
+                <td>{{ contrat_vehicule.MatriculeAgent }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_contrat_vehicule_index') }}">back to list</a>
+
+    <a href="{{ path('app_contrat_vehicule_edit', {'id': contrat_vehicule.id}) }}">edit</a>
+
+    {{ include('contrat_vehicule/_delete_form.html.twig') }}
+    </div>
+    </section>
+{% endblock %}

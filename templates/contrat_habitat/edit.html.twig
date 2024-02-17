@@ -1,0 +1,14 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Edit ContratHabitat{% endblock %}
+
+{% block body %}
+<div class="section-title">
+        <h2>Modifier un nouveau contrat d'assurance vehicule</h2>
+     </div>
+    {{ include('contrat_habitat/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_contrat_habitat_index') }}">back to list</a>
+
+    {{ include('contrat_habitat/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}ContratHabitat index{% endblock %}
+
+{% block body %}
+<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+
+    <h1>Contrat Habitat</h1>
+ <div class="row justify-content-center">
+        <div class="col-md-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date_debut</th>
+                <th>Date_fin</th>
+                <th>Description</th>
+                <th>MatriculeAgent</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contrat_habitat in contrat_habitats %}
+            <tr>
+                <td>{{ contrat_habitat.id }}</td>
+                <td>{{ contrat_habitat.DateDebut ? contrat_habitat.DateDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ contrat_habitat.DateFin ? contrat_habitat.DateFin|date('Y-m-d') : '' }}</td>
+                <td>{{ contrat_habitat.Description }}</td>
+                <td>{{ contrat_habitat.MatriculeAgent }}</td>
+                <td>
+                    <a href="{{ path('app_contrat_habitat_show', {'id': contrat_habitat.id}) }}">show</a>
+                    <a href="{{ path('app_contrat_habitat_edit', {'id': contrat_habitat.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_contrat_habitat_new') }}">Create new</a>
+         </div>
+        </div>
+        </section>
+    </div>
+{% endblock %}
