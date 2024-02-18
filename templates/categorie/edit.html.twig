@@ -1,9 +1,8 @@
-{% extends 'baseback.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Modifier Categorie{% endblock %}
 
-{% block content1 %}
-    <center>
+{% block body %}
     <h1>Modifier Categorie</h1>
 
     {{ include('categorie/_form.html.twig', {'button_label': 'Update'}) }}
@@ -11,6 +10,4 @@
     <a href="{{ path('app_categorie_index') }}">Retour</a>
 
     {{ include('categorie/_delete_form.html.twig') }}
-    </center>
-
 {% endblock %}

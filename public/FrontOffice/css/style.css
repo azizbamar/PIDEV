@@ -445,6 +445,12 @@ h6 {
   color: #fff;
 }
 
+.fade-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
 #hero h2 {
   color: rgba(255, 255, 255, 0.8);
   margin: 10px 0 0 0;
@@ -999,18 +1005,73 @@ section {
 
 .portfolio .portfolio-wrap .portfolio-links {
   opacity: 0;
-  left: 0;
+  left: 50%;
+  display: flex;
+  transform: translateX(-50%);
   right: 0;
-  bottom: 10%;
+  bottom: 20%;
   text-align: center;
+  justify-content: center;
   z-index: 3;
   position: absolute;
   transition: all ease-in-out 0.3s;
 }
+.comment-textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.comment-textarea:hover {
+  border-color: #66afe9; /* Change border color on hover */
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.5); /* Add shadow on hover */
+}
+
+/* Optional: Style the placeholder text */
+.comment-textarea::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+/* Optional: Style the comment button */
+.comment-button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #66afe9;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.comment-button:hover {
+  background-color: #5cb85c; /* Change button color on hover */
+}
+
+.review-stars input[type="radio"] {
+  display: none;
+}
+
+.review-stars label {
+  display: inline-block;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url('../img/se.png');
+  background-size: cover;
+}
+
+.review-stars label:hover,
+.review-stars label:hover ~ label {
+  background-image: url('../img/sf.png');
+}
 
 .portfolio .portfolio-wrap .portfolio-links a {
   color: rgba(255, 255, 255, 0.6);
-  margin: 0 2px;
+  margin: 0 5px;
   font-size: 28px;
   display: inline-block;
   transition: 0.3s;
@@ -1647,3 +1708,4 @@ section {
   color: #fff;
   text-decoration: none;
 }
+
