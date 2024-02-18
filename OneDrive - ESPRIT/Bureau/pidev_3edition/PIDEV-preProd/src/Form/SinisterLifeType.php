@@ -6,6 +6,9 @@ use App\Entity\SinisterLife;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Constraints\Valid;
+use App\Validator\Constraints\VerifyChanges;
 
 class SinisterLifeType extends AbstractType
 {
@@ -19,6 +22,10 @@ class SinisterLifeType extends AbstractType
             ->add('description')
             ->add('beneficiaryName')
             ->add('sinisterUser')
+            /*->add('submit', SubmitType::class, [
+                'label' => 'Save',
+                'attr' => ['class' => 'btn btn-primary'],
+            ])*/
         ;
     }
 
@@ -26,6 +33,7 @@ class SinisterLifeType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => SinisterLife::class,
+            'validation_groups' => ['Default', 'sinister_life'],
         ]);
     }
 }

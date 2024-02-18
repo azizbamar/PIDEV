@@ -19,9 +19,22 @@ class SinisterLife extends Sinister
     #[ORM\OneToMany(targetEntity: MedicalSheet::class, mappedBy: 'sinisterLife', orphanRemoval: true)]
     private Collection $medicalSheet;
 
+    private array $originalValues = [];
     public function __construct()
     {
+        parent::__construct();
         $this->medicalSheet = new ArrayCollection();
+        $this->originalValues = [
+            'location' => $this->getLocation(),
+            'amountSinister' => $this->getAmountSinister(),
+            'statusSinister' => $this->getstatusSinister(),
+            'description' => $this->getdescription(),
+            'beneficiaryName' => $this->getbeneficiaryName(),
+        ];
+    }
+    public function getOriginalValues(): array
+    {
+        return $this->originalValues;
     }
 
     public function __toString(): string

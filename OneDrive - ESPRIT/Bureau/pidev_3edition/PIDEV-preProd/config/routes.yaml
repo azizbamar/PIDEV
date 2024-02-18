@@ -12,3 +12,15 @@ client:
 HomePage:
     path: /HomePage
     controller: App\Controller\ClientController::HomePage
+
+showSinisterLifeAdmin:
+    path: /showSinisterLifeAdmin
+    controller: App\Controller\AdminController::showSinisterLifeAdmin
+
+showMedicalSheetsAdmin:
+    path: /showMedicalSheetsAdmin
+    controller: App\Controller\AdminController::showMedicalSheetsAdmin
+
+showPrescriptionsAdmin:
+    path: /showPrescriptionsAdmin
+    controller: App\Controller\AdminController::showPrescriptionsAdmin

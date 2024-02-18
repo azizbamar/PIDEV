@@ -28,9 +28,9 @@ class SinisterLifeController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $sinisterLife = new SinisterLife();
-        $sinisterLife->setDateSinister(new \DateTime());
         $form = $this->createForm(SinisterLifeType::class, $sinisterLife);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($sinisterLife);
             $entityManager->flush();
@@ -51,7 +51,7 @@ class SinisterLifeController extends AbstractController
             'sinister_life' => $sinisterLife,
         ]);
     }
-
+/*
     #[Route('/{id}/edit', name: 'app_sinister_life_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, SinisterLife $sinisterLife, EntityManagerInterface $entityManager): Response
     {
@@ -68,6 +68,56 @@ class SinisterLifeController extends AbstractController
             'sinister_life' => $sinisterLife,
             'form' => $form,
         ]);
+    }
+*/
+
+
+    #[Route('/{id}/edit', name: 'app_sinister_life_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, SinisterLife $sinisterLife, EntityManagerInterface $entityManager): Response
+    {
+        $originalData = clone $sinisterLife;
+
+        $form = $this->createForm(SinisterLifeType::class, $sinisterLife);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Check if any changes have been made to the SinisterLife entity
+            if ($this->isSinisterLifeModified($originalData, $sinisterLife)) {
+                $entityManager->flush();
+
+                $this->addFlash('success', 'SinisterLife updated successfully.');
+
+                return $this->redirectToRoute('app_sinister_life_index');
+            }
+
+            $this->addFlash('warning', 'No changes have been made.');
+
+            return $this->redirectToRoute('app_sinister_life_index');
+        }
+
+        return $this->renderForm('sinister_life/edit.html.twig', [
+            'sinister_life' => $sinisterLife,
+            'form' => $form,
+        ]);
+    }
+
+
+    private function isSinisterLifeModified(SinisterLife $original, SinisterLife $updated): bool
+    {
+        $changesDetected = $original->getDateSinister() !== $updated->getDateSinister()
+            || $original->getLocation() !== $updated->getLocation()
+            || $original->getAmountSinister() !== $updated->getAmountSinister()
+            || $original->getStatusSinister() !== $updated->getStatusSinister()
+            || $original->getDescription() !== $updated->getDescription()
+            || $original->getBeneficiaryName() !== $updated->getBeneficiaryName();
+
+        if (!$changesDetected) {
+            dump('No changes detected.');
+        } else {
+            dump('Changes detected.');
+        }
+
+        return $changesDetected;
     }
 
     #[Route('/{id}', name: 'app_sinister_life_delete', methods: ['POST'])]
