@@ -1,0 +1,45 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Question index{% endblock %}
+
+{% block body %}
+    <h1>Question index</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Question</th>
+                <th>Type</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for question in questions %}
+            <tr>
+                <td>{{ question.id }}</td>
+                <td>{{ question.question }}</td>
+                <td>{{ question.type }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('app_question_show', {'id': question.id}) }}">show</a>
+                    <a class="btn btn-secondary" href="{{ path('app_question_edit', {'id': question.id}) }}">edit</a>
+                    {% if question.type == 'life' %}
+                    <a class="btn btn-success" href="{{ path('app_service_life_new', {'id': question.id}) }}"><i class="bi bi-plus">Service</i></a>
+                    {% endif %}
+                    {% if question.type == 'property' %}
+                    <a class="btn btn-success" href="{{ path('app_service_property_new', {'id': question.id}) }}"><i class="bi bi-plus">Service</i></a>
+                    {% endif %}
+                    {% if question.type == 'auto' %}
+                    <a class="btn btn-success" href="{{ path('app_service_auto_new', {'id': question.id}) }}"><i class="bi bi-plus">Service</i></a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('app_question_new') }}">Create new</a>
+{% endblock %}

@@ -30,7 +30,8 @@
 <body>
 {% include "client/header.html.twig" %}
 <main id="main">
-{% include "client/test.html.twig" %}
+  {% block body %}
+  {% endblock %}
   </main><!-- End #main -->
 {% include "client/footer.html.twig" %}
 </body>    

@@ -1,0 +1,11 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}New ServiceProperty{% endblock %}
+
+{% block body %}
+    <h1>Create new ServiceProperty</h1>
+
+    {{ include('service_property/_form.html.twig') }}
+
+    <a href="{{ path('app_service_property_index') }}">back to list</a>
+{% endblock %}
