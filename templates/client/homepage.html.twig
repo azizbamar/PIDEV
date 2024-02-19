@@ -5,22 +5,22 @@
 
 {% block stylesheets %}
 
-    <link href="{{ asset('public/FrontOffice/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('FrontOffice/vendor/aos/aos.css') }}" rel="stylesheet">
     <!-- Include other CSS files -->
     <!-- Favicons -->
-    <link href="{{asset('public/FrontOffice/img/favicon.png')}}" rel="icon">
-    <link href="{{asset('public/FrontOffice/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+    <link href="{{asset('FrontOffice/img/favicon.png')}}" rel="icon">
+    <link href="{{asset('FrontOffice/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="{{asset('public/FrontOffice/vendor/aos/aos.css')}}" rel="stylesheet">
-    <link href="{{asset('public/FrontOffice/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/FrontOffice/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-    <link href="{{asset('public/FrontOffice/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/FrontOffice/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/FrontOffice/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+    <link href="{{asset('FrontOffice/vendor/aos/aos.css')}}" rel="stylesheet">
+    <link href="{{asset('FrontOffice/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('FrontOffice/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{asset('FrontOffice/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+    <link href="{{asset('FrontOffice/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+    <link href="{{asset('FrontOffice/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="{{asset('FrontOffice/css/style.css')}}" rel="stylesheet">
@@ -39,8 +39,8 @@
         <meta content="" name="keywords">
 
         <!-- Favicons -->
-        <link href="{{asset('public/FrontOffice/img/favicon.png')}}" rel="icon">
-        <link href="{{asset('public/FrontOffice/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+        <link href="{{asset('FrontOffice/img/favicon.png')}}" rel="icon">
+        <link href="{{asset('FrontOffice/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -70,16 +70,16 @@
         <div class="container d-flex align-items-center justify-content-between">
             <h1 class="logo"><a href="index.html">ProtechTini</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
-            <a href="index.html" class="logo"><img src="public/FrontOffice/img/favicon.png" alt="" class="img-fluid"></a>
+            <a href="index.html" class="logo"><img src="public/img/favicon.png" alt="" class="img-fluid"></a>
 
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto " href="#hero">Acceuil</a></li>
                     <li><a class="nav-link scrollto" href="#about">Services</a></li>
-                    <!-- <li><a class="nav-link scrollto" href="#services">hhh</a></li>-->
+                    <li><a class="nav-link scrollto" href="#services">hhh</a></li>
                     <li><a class="nav-link scrollto " href="#portfolio">Actualité</a></li>
                     <li><a class="nav-link scrollto" href="#team">Team</a></li>
-                    <!--<li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Drop Down 1</a></li>
                             <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
@@ -95,17 +95,16 @@
                             <li><a href="#">Drop Down 3</a></li>
                             <li><a href="#">Drop Down 4</a></li>
                         </ul>
-                    </li>-->
-                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                    <li class="dropdown getstarted scrollto"><a href="#"><span>Profile</span> <i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li><a href="{{ path('admin') }}">parametre</a></li>
-                            <li><a href="#">article interagi</a></li>
-                            <li><a href="#">mes services inscri</a></li>
-                            <li><a href="#">suivi mes demandes</a></li>
-                            <li><a href="{{ path('client') }}">deconnecte</a></li>
-                        </ul>
                     </li>
+                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    <li><a href="#" class="btn-get-started scrollto">Log In</a></li>
+                    <li><a href="#" class="btn-get-started scrollto">Sign Up</a></li>
+
+
+
+
+
+
 
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -121,7 +120,7 @@
                 <div class="col-xl-5 col-lg-6 pt-3 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
                     <h1>benificer  l'Experience digital avec ProTechTini</h1>
                     <h2>devouvrir notre services</h2>
-                    <div><a href="#about" class="btn-get-started scrollto">installer vous</a></div>
+                    <div><a href="{{path ('app_client')}}" class="btn-get-started scrollto">exploer notre actualite</a></div>
                 </div>
                 <div class="col-xl-4 col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="150">
                     <img src="{{asset('FrontOffice/img/hero-img.png')}}" class="img-fluid animated" alt="">
@@ -165,7 +164,7 @@
                         </div>
                         <div class="portfolio-links">
                             <a href="{{asset('FrontOffice/img/portfolio/portfolio-1.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Les discussions sur des questions juridiques liées à l'assurance automobile, telles que les changements dans les lois affectant les exigences de couverture ou les limites de responsabilité, sont également fréquentes."><i class="bx bx-plus"></i></a>
-                            <!-- <a href=""title="voir plus"><i class="bx bx-link"></i></a>-->
+
                         </div>
                     </div>
                 </div>
@@ -178,81 +177,128 @@
                         </div>
                         <div class="portfolio-links">
                             <a href="{{asset('FrontOffice/img/portfolio/portfolio-2.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="descfaegzrhtrgzefRÏEZRHEROGFHZEIFugezifezugfizegzeuiogfezifezfezifezgf"><i class="bx bx-plus"></i></a>
-                            <!--  <a href= "" title="voir plus"><i class="bx bx-link"></i></a>-->
+
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-sante">
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
                     <div class="portfolio-wrap">
-                        <!--<a href="" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1">-->
-                        <img src="{{asset('FrontOffice/img/portfolio/portfolio-7.jpg')}}" class="img-fluid" alt="">
+                        <img src="{{asset('FrontOffice/img/portfolio/portfolio-2.jpg" class="img-fluid')}}" alt="">
                         <div class="portfolio-info">
-                            <h4>Card 1</h4>
-                            <p>Card</p>
+                            <h4>Web 3</h4>
+                            <p>Web</p>
                         </div>
                         <div class="portfolio-links">
-                            <a href="{{asset('FrontOffice/img/portfolio/portfolio-7.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
+                            <a href="{{asset('FrontOffice/img/portfolio/portfolio-2.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
                             <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 portfolio-item filter-sante">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-voy">
+                    <div class="portfolio-wrap">
+                        <img src="{{asset('FrontOffice/img/portfolio/portfolio-3.jpg')}}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>App 2</h4>
+                            <p>App</p>
+                        </div>
+                        <div class="portfolio-links">
+                            <a href="{{asset('FrontOffice/img/portfolio/portfolio-3.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                    <div class="portfolio-wrap">
+                        <img src="{{asset('FrontOffice/img/portfolio/portfolio-4.jpg')}}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Card 2</h4>
+                            <p>Card</p>
+                        </div>
+                        <div class="portfolio-links">
+                            <a href="{{asset('FrontOffice/img/portfolio/portfolio-4.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
                     <div class="portfolio-wrap">
                         <img src="{{asset('FrontOffice/img/portfolio/portfolio-5.jpg')}}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Web 2</h4>
+                            <p>Web</p>
+                        </div>
+                        <div class="portfolio-links">
+                            <a href="{{asset('FrontOffice/img/portfolio/portfolio-5.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div class="portfolio-wrap">
+                        <img src="{{asset('FrontOffice/img/portfolio/portfolio-6.jpg')}}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>App 3</h4>
+                            <p>App</p>
+                        </div>
+                        <div class="portfolio-links">
+                            <a href="{{asset('FrontOffice/img/portfolio/portfolio-6.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                    <div class="portfolio-wrap">
+                        <a href=# data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1">
+                            <img src="{{asset('FrontOffice/img/portfolio/portfolio-7.jpg')}}" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Card 1</h4>
+                                <p>Card</p>
+                            </div>
+                            <div class="portfolio-links">
+                                <a href="{{asset('FrontOffice/img/portfolio/portfolio-7.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
+                                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                    <div class="portfolio-wrap">
+                        <img src="{{asset('FrontOffice/img/portfolio/portfolio-8.jpg')}}" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Card 3</h4>
                             <p>Card</p>
                         </div>
                         <div class="portfolio-links">
-                            <a href="{{asset('FrontOffice/img/portfolio/portfolio-5.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
+                            <a href="{{asset('FrontOffice/img/portfolio/portfolio-8.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
                             <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 portfolio-item filter-sante">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
                     <div class="portfolio-wrap">
-                        <img src="{{asset('FrontOffice/img/portfolio/portfolio-4.jpg')}}" class="img-fluid" alt="">
+                        <img src="{{asset('FrontOffice/img/portfolio/portfolio-9.jpg')}}" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Web 3</h4>
                             <p>Web</p>
                         </div>
                         <div class="portfolio-links">
-                            <a href="{{asset('FrontOffice/img/portfolio/portfolio-4.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
+                            <a href="{{asset('FrontOffice/img/portfolio/portfolio-9.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
                             <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-habi">
-                    <div class="portfolio-wrap">
-                        <img src="{{asset('FrontOffice/img/portfolio/portfolio-13.jpg')}}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Web 3</h4>
-                            <p>Web</p>
-                        </div>
-                        <div class="portfolio-links">
-                            <a href="{{asset('FrontOffice/img/portfolio/portfolio-13.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-habi">
-                    <div class="portfolio-wrap">
-                        <img src="{{asset('FrontOffice/img/portfolio/portfolio-14.jpg')}}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Web 3</h4>
-                            <p>Web</p>
-                        </div>
-                        <div class="portfolio-links">
-                            <a href="{{asset('FrontOffice/img/portfolio/portfolio-14.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-                </div>
+
             </div>
-    </section><!-- End Portfolio Section -->
 
+        </div>
+    </section><!-- End Portfolio Section -->
     </body>
 
 
@@ -322,8 +368,9 @@
                 </div>
                 <div class="social-links text-center text-md-right pt-3 pt-md-0">
                     <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=61556365625803" class="facebook"><i class="bx bxl-facebook"></i></a>
-                    <a href="#" class="google-plus"><i class="bx bxl-gmail"></i></a>
+                    <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                    <a href="#" class="google-plus"><i class="bx bxl-"></i></a>
                     <a href="https://www.linkedin.com/in/synthcode-company-a636892b1/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
                 </div>
             </div>
@@ -346,3 +393,6 @@
         <script src="{{asset('FrontOffice/js/main.js')}}"></script>
     {% endblock %}
 {% endblock %}
+
+
+
