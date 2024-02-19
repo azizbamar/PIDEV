@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseback.html.twig' %}
 
 {% block title %}Article{% endblock %}
 
-{% block body %}
+{% block content1 %}
     <h1>Article</h1>
 
     <table class="table">
@@ -12,28 +12,28 @@
                 <td>{{ article.id }}</td>
             </tr>
             <tr>
-                <th>Author_name</th>
-                <td>{{ article.authorName }}</td>
-            </tr>
-            <tr>
-                <th>Date_pub</th>
-                <td>{{ article.datePub ? article.datePub|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Article_url</th>
-                <td>{{ article.articleUrl }}</td>
+                <th>Title</th>
+                <td>{{ article.title }}</td>
             </tr>
             <tr>
                 <th>Description</th>
                 <td>{{ article.description }}</td>
             </tr>
             <tr>
-                <th>Image</th>
-                <td>{{ article.image }}</td>
+                <th>Nom Auteur</th>
+                <td>{{ article.authorName }}</td>
             </tr>
             <tr>
-                <th>Title</th>
-                <td>{{ article.title }}</td>
+                <th>Date De Publication</th>
+                <td>{{ article.datePub ? article.datePub|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Article URL</th>
+                <td>{{ article.articleUrl }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ article.image }}</td>
             </tr>
         </tbody>
     </table>

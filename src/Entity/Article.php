@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\ArticleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -15,36 +15,74 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $author_name = null;
+    #[Assert\NotBlank(message: 'Le contenu ne peut pas être vide')]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-ZÀ-ÿ\s]+$/',
+        message: 'Le nom ne peut contenir que des lettres.'
+    )]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Le nom ne peut pas dépasser {{ limit }} caractères.'
+    )]
+    private ?string $title = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'Le contenu ne peut pas être vide')]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-ZÀ-ÿ\s]+$/',
+        message: 'Le nom ne peut contenir que des lettres.'
+    )]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Le nom ne peut pas dépasser {{ limit }} caractères.'
+    )]
     private ?\DateTimeInterface $date_pub = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le contenu ne peut pas être vide')]
     private ?string $article_url = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le contenu ne peut pas être vide')]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-ZÀ-ÿ\s]+$/',
+        message: 'Le nom ne peut contenir que des lettres.'
+    )]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Le nom ne peut pas dépasser {{ limit }} caractères.'
+    )]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $image = 'logo.jpg';
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+
+    private ?string $image = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $title = null;
+    #[Assert\NotBlank(message: 'Le contenu ne peut pas être vide')]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-ZÀ-ÿ\s]+$/',
+        message: 'Le nom ne peut contenir que des lettres.'
+    )]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Le nom ne peut pas dépasser {{ limit }} caractères.'
+    )]
+    private ?string $author_name = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAuthorName(): ?string
+    public function getTitle(): ?string
     {
-        return $this->author_name;
+        return $this->title;
     }
 
-    public function setAuthorName(string $author_name): static
+    public function setTitle(string $title): static
     {
-        $this->author_name = $author_name;
+        $this->title = $title;
 
         return $this;
     }
@@ -90,21 +128,21 @@ class Article
         return $this->image;
     }
 
-    public function setImage(string $image): static
+    public function setImage(?string $image): static
     {
         $this->image = $image;
 
         return $this;
     }
 
-    public function getTitle(): ?string
+    public function getAuthorName(): ?string
     {
-        return $this->title;
+        return $this->author_name;
     }
 
-    public function setTitle(string $title): static
+    public function setAuthorName(string $author_name): static
     {
-        $this->title = $title;
+        $this->author_name = $author_name;
 
         return $this;
     }
