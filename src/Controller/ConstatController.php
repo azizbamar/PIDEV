@@ -72,7 +72,12 @@ class ConstatController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_constat_index', [], Response::HTTP_SEE_OTHER);
+            $message = "Votre modification a été enregistrée. Un expert la traitera et vous contactera pour plus d'informations.";
+    
+            return $this->render('constat/new_success.html.twig', [
+                'message' => $message,
+                'sinister_vehicle' => $sinisterVehicle,
+            ]);
         }
 
         return $this->renderForm('constat/edit.html.twig', [
@@ -87,8 +92,14 @@ class ConstatController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$sinisterVehicle->getId(), $request->request->get('_token'))) {
             $entityManager->remove($sinisterVehicle);
             $entityManager->flush();
+            $message = "Votre declaration de sinistre a été supprimé. ";
+    
+            return $this->render('constat/del.html.twig', [
+                'message' => $message,
+                'sinister_vehicle' => $sinisterVehicle,
+            ]);
         }
 
-        return $this->redirectToRoute('app_constat_index', [], Response::HTTP_SEE_OTHER);
+       
     }
 }

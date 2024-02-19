@@ -16,6 +16,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 ))]
 abstract class Sinister
 {
+    public function __toString(): string
+    {
+        // Customize this method based on how you want to represent Sinister as a string
+        return $this->getId() ? $this->getId().' - '.$this->getLocation().' - '.$this->getDateSinister()->format('Y-m-d') : 'New Sinister';
+    }
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: "integer")]
@@ -34,6 +39,10 @@ abstract class Sinister
     private ?User $sinisterUser = null;
 
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $status_sinister = 'en_cours';
+
+
 
     public function getId(): ?int
     {
@@ -44,6 +53,7 @@ abstract class Sinister
     {
         return $this->dateSinister;
     }
+    
 
     public function setDateSinister(\DateTimeInterface $dateSinister): self
     {
@@ -72,6 +82,20 @@ abstract class Sinister
     public function setSinisterUser(?User $sinisterUser): static
     {
         $this->sinisterUser = $sinisterUser;
+
+        return $this;
+    }
+
+   
+
+    public function getStatusSinister(): ?string
+    {
+        return $this->status_sinister;
+    }
+
+    public function setStatusSinister(?string $status_sinister): static
+    {
+        $this->status_sinister = $status_sinister;
 
         return $this;
     }

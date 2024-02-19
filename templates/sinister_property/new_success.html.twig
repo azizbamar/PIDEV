@@ -3,9 +3,7 @@
 {% block title %}Success{% endblock %}
 
 {% block stylesheets %}
-    {# Include Bootstrap CSS here #}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    {# Additional custom styles #}
+    {# Include your custom CSS styles here #}
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -42,10 +40,9 @@
         .button-container {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
         }
 
-        .btn-primary {
+        a {
             display: inline-block;
             padding: 10px 20px;
             margin: 0 10px;
@@ -56,7 +53,7 @@
             transition: background-color 0.3s;
         }
 
-        .btn-primary:hover {
+        a:hover {
             background-color: #0056b3;
         }
     </style>
@@ -68,8 +65,8 @@
         <p>{{ message }}</p>
 
         <div class="button-container">
-            <a href="{{ path('app_constat_show', {'id': sinister_vehicle.id}) }}" class="btn btn-primary">Show</a>
-            <a href="{{ path('app_constat_edit', {'id': sinister_vehicle.id}) }}" class="btn btn-primary">Edit</a>
+            <a href="{{ path('app_sinister_property_show', {'id': sinister_property.id}) }}">Show</a>
+            <a href="{{ path('app_sinister_property_edit', {'id': sinister_property.id}) }}">Edit</a>
             {# Add the delete button or any other actions as needed #}
         </div>
     </div>

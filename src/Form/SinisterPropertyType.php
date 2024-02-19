@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 class SinisterPropertyType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -30,14 +30,17 @@ class SinisterPropertyType extends AbstractType
         ->add('location')
         ->add('type_degat', ChoiceType::class, [
             'choices' => [
-                'cambriolé' => 'cambriolé',
+                'volé' => 'volé',
                 'incendié' => 'incendié',
                 'inondé' => 'inondé',
             ],
             'placeholder' => 'Sélectionnez un type de dégât', 
             
         ])
-            ->add('description_degat')
+            ->add('description_degat', TextareaType::class, [
+                'label' => 'Description du dégat',
+               
+            ])
         ;
     }
 

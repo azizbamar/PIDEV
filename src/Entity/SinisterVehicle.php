@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[Vich\Uploadable]
 class SinisterVehicle extends Sinister
 {
+    
     #[Vich\UploadableField(mapping: 'sinister_vehicle_images', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
     

@@ -28,13 +28,7 @@ class SinisterVehicleType extends AbstractType
                 ],
                 'placeholder' => 'Sélectionnez une date',
             ])
-            ->add('location', null, [
-                'constraints' => [
-                    new Assert\NotBlank([
-                        'message' => 'La localisation du sinistre ne doit pas être vide.',
-                    ]),
-                ],
-            ])
+            ->add('location')
 
             // Step2: Information about Vehicle A
             ->add('Nom_Conducteur_A')

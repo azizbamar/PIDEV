@@ -32,8 +32,11 @@ class SinisterPropertyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($sinisterProperty);
             $entityManager->flush();
-
-            return $this->redirectToRoute('app_sinister_property_index', [], Response::HTTP_SEE_OTHER);
+            $message = "Votre déclaration de sinistre habitation a été enregistrée. Un expert la traitera et vous contactera pour plus d'informations.";
+            return $this->render('sinister_property/new_success.html.twig', [
+                'message' => $message,
+                'sinister_property' => $sinisterProperty,
+            ]);
         }
 
         return $this->renderForm('sinister_property/new.html.twig', [
@@ -41,11 +44,19 @@ class SinisterPropertyController extends AbstractController
             'form' => $form,
         ]);
     }
-
-    #[Route('/{id}', name: 'app_sinister_property_show', methods: ['GET'])]
-    public function show(SinisterProperty $sinisterProperty): Response
+    #[Route('/show/{id}', name: 'app_sinister_property_show', methods: ['GET'])]
+    public function showAdmin(SinisterProperty $sinisterProperty): Response
     {
         return $this->render('sinister_property/show.html.twig', [
+            'sinister_property' => $sinisterProperty,
+        ]);
+    }
+
+
+    #[Route('/{id}', name: 'app_sinister_property_show_admin', methods: ['GET'])]
+    public function show(SinisterProperty $sinisterProperty): Response
+    {
+        return $this->render('sinister_property/show_admin.html.twig', [
             'sinister_property' => $sinisterProperty,
         ]);
     }
@@ -59,7 +70,13 @@ class SinisterPropertyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_sinister_property_index', [], Response::HTTP_SEE_OTHER);
+           
+            $message = "Votre modification a été enregistrée. Un expert la traitera et vous contactera pour plus d'informations.";
+    
+            return $this->render('sinister_property/new_success.html.twig', [
+                'message' => $message,
+                'sinister_property' => $sinisterProperty,
+            ]);
         }
 
         return $this->renderForm('sinister_property/edit.html.twig', [
@@ -74,8 +91,16 @@ class SinisterPropertyController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$sinisterProperty->getId(), $request->request->get('_token'))) {
             $entityManager->remove($sinisterProperty);
             $entityManager->flush();
+            $message = "Votre sinistre a été supprimé. ";
+    
+            $message = "Votre déclaration de sinistre habitation a été supprimé.";
+            return $this->render('sinister_property/del.html.twig', [
+                'message' => $message,
+                'sinister_property' => $sinisterProperty,
+            ]);
+        
         }
 
-        return $this->redirectToRoute('app_sinister_property_index', [], Response::HTTP_SEE_OTHER);
+       
     }
 }

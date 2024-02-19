@@ -181,40 +181,9 @@
             </a>
         </li><!-- End Dashboard Nav -->
        
-        <li class="nav-item" id="adminNavItem">
-            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Administration</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="#">
-                        <i class="bi bi-circle"></i><span>Users</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="bi bi-circle"></i><span>Reclamations</span>
-                    </a>
-                </li>
-                <!-- Add more menu items as needed -->
-            </ul>
-        </li>
+       
     
-    
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="">
-                <i class="bi bi-layout-text-window-reverse"></i><span>Personal informations</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="#">
-                <i class="bi bi-circle"></i><span>Reclamations</span>
-            </a>
-            
-                </li>
-             
-            </ul>
-        </li><!-- End Tables Nav -->
+        
         
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="">
@@ -236,7 +205,22 @@
              
             </ul>
         </li><!-- End Tables Nav -->
-        
+     
+         <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="">
+                <i class="bi bi-layout-text-window-reverse"></i><span>rapports</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                  <a href={{ path('app_rapport_index') }}>
+                <i class="bi bi-circle"></i><span>voir les rapports</span>
+            </a>
+            
+                </li>
+             
+            </ul>
+        </li><!-- End Tables Nav -->
+
         {# <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>

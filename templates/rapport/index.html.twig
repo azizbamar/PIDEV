@@ -1,0 +1,35 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Liste des rapports{% endblock %}
+
+{% block profile %}
+    <h1>Liste des rapports</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Decision</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rapport in rapports %}
+            <tr>
+                <td>{{ rapport.id }}</td>
+                <td>{{ rapport.decision }}</td>
+                <td>
+                    <a href="{{ path('app_rapport_show', {'id': rapport.id}) }}">show</a>
+                    <a href="{{ path('app_rapport_edit', {'id': rapport.id}) }}">treat</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<a href="{{ path('app_rapport_new') }}" class="btn btn-primary">Etablir un nouveau rapport</a>
+  
+{% endblock %}

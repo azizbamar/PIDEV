@@ -1,0 +1,42 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Rapport{% endblock %}
+
+{% block profile %}
+    <h1>Rapport</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ rapport.id }}</td>
+            </tr>
+            <tr>
+                <th>Decision</th>
+                <td>{{ rapport.decision }}</td>
+            </tr>
+            {# Add Sinister details here #}
+            <tr>
+                <th>Date Sinister</th>
+                <td>{{ rapport.sinisterRapport.dateSinister|date('Y-m-d') }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ rapport.sinisterRapport.location }}</td>
+            </tr>
+            <tr>
+                <th> actions</th>
+                <td> <a href="{{ path('sinister_details', {'id': rapport.sinisterRapport.id}) }}" class="btn btn-primary">Voir plus de détails à propos du sinistre</a>
+                   <a href="{{ path('app_rapport_index') }}"" class="btn btn-primary">Back to list</a> 
+               <a href="{{ path('app_rapport_edit', {'id': rapport.id}) }}"" class="btn btn-primary">traiter</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    {# Button to view more details about the sinister #}
+   
+
+ 
+
+    
+{% endblock %}

@@ -1,9 +1,9 @@
 {% extends 'admin/index.html.twig' %}
 
-{% block title %}SinisterVehicle index{% endblock %}
+{% block title %}Liste Des Sinistres Vehicules {% endblock %}
 
 {% block profile %}
-    <h1>SinisterVehicle index</h1>
+    <h1>Liste Des Sinistres Vehicules </h1>
 
     <table class="table">
         <thead>
@@ -11,7 +11,9 @@
                 <th>Id</th>
                 <th>DateSinister</th>
                 <th>Location</th>
+                <th>status</th>
                 <th>actions</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -20,6 +22,7 @@
                 <td>{{ sinister_vehicle.id }}</td>
                 <td>{{ sinister_vehicle.dateSinister ? sinister_vehicle.dateSinister|date('Y-m-d') : '' }}</td>
                 <td>{{ sinister_vehicle.location }}</td>
+                 <td>{{ sinister_vehicle.StatusSinister }}</td>
                
                 <td>
                     <a href="{{ path('app_constat_showAdmin', {'id': sinister_vehicle.id}) }}">show</a>

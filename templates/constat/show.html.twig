@@ -7,10 +7,7 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ sinister_vehicle.id }}</td>
-            </tr>
+            
             <tr>
                 <th>DateSinister</th>
                 <td>{{ sinister_vehicle.dateSinister ? sinister_vehicle.dateSinister|date('Y-m-d') : '' }}</td>
@@ -94,6 +91,10 @@
             <tr>
                 <th>Agence</th>
                 <td>{{ sinister_vehicle.agence }}</td>
+            </tr>
+             <tr>
+                <th>Status</th>
+                <td>{{ sinister_vehicle.StatusSinister }}</td>
             </tr>
         </tbody>
     </table>
