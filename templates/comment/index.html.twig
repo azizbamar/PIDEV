@@ -1,16 +1,17 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseback.html.twig' %}
 
-{% block title %}Comment List{% endblock %}
+{% block title %}Commentaire {% endblock %}
 
-{% block body %}
-    <h1>Comment List</h1>
+{% block content1 %}
+<center>
+    <h1>Commentaire</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>description</th>
-                <th>review</th>
+                <th>Commentaires</th>
+                <th>Note</th>
 
             </tr>
         </thead>
@@ -18,12 +19,26 @@
         {% for comment in comments %}
             <tr>
                 <td>{{ comment.id }}</td>
-                <td>{{ comment.descript}}</td>
-                <td>{{ comment.review  }}</td>
-                <td>
-                    <a href="{{ path('app_comment_show', {'id': comment.id}) }}">show</a>
-                    <a href="{{ path('app_comment_edit', {'id': comment.id}) }}">edit</a>
-                </td>
+                <td>{{ comment.description }}</td>
+                <td>{{ comment.rate }}</td>
+               <td>
+               <style>
+               .comment-links {
+                   display: flex;
+                   flex-direction: column;
+               }
+
+               .comment-links > div {
+                   margin-bottom: 5px; /* Adjust as needed */
+               }
+               </style>
+                   <div class="comment-links">
+                       <div><a href="{{ path('app_comment_show', {'id': comment.id}) }}">Voir Plus</a></div>
+                       <div><a href="{{ path('app_comment_edit', {'id': comment.id}) }}">Modifier</a></div>
+                      {{ include('comment/_delete_form.html.twig') }}
+                   </div>
+               </td>
+
             </tr>
         {% else %}
             <tr>
@@ -34,4 +49,6 @@
     </table>
 
     <a href="{{ path('app_comment_new') }}">Create new</a>
+</center>
 {% endblock %}
+
