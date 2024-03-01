@@ -26,7 +26,7 @@
         <tbody>
         {% for article in articles %}
             <tr>
-                <td>{{ article.id }}</td>
+                <td>{{ article.id  }}</td>
                 <td>{{ article.authorname }}</td>
                 <td>{{ article.title }}</td>
                 <td>{{ article.description }}</td>
@@ -40,8 +40,8 @@
                     {% endif %}
                 </td>
                 <td>
-                    <a href="{{ path('app_article_show', {'id': article.id}) }}" class="btn btn-info btn-sm">Show</a>
-                    <a href="{{ path('app_article_edit', {'id': article.id}) }}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="{{ path('app_article_show', {'id': article.id}) }}" class="btn btn-info btn-sm">Voir Plus</a>
+                    <a href="{{ path('app_article_edit', {'id': article.id}) }}" class="btn btn-primary btn-sm,color: darkblue">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -52,5 +52,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_article_new') }}">Cree Un Noveau</a>
+    <a class="btn btn-primary btn-sm" href="{{ path('app_article_new') }}">Cree Un Noveau</a>
 {% endblock %}

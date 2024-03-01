@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79951745-41cf-4767-8d65-b06beeeae623" name="Changes" comment="crud+template" />
+    <list default="true" id="79951745-41cf-4767-8d65-b06beeeae623" name="Changes" comment="crud+template">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/basearticle.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/basearticle.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client_article/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client_article/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/comment/comment.twig.html" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -259,6 +271,8 @@
       <workItem from="1709308737901" duration="12000" />
       <workItem from="1709310103518" duration="42000" />
       <workItem from="1709310588890" duration="15000" />
+      <workItem from="1709322015235" duration="5639000" />
+      <workItem from="1709327947958" duration="24000" />
     </task>
     <task id="LOCAL-00001" summary="crud+template">
       <option name="closed" value="true" />

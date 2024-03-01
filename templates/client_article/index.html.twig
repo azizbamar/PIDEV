@@ -89,9 +89,9 @@
                 </ul>
 
         <h2>Add a comment</h2>
-        {{ form_start(form) }}
-        {{ form_row(form.description) }}
-        {{ form_row(form.rate) }}
+        {{ form_start(form,{'attr': {'class': 'row g-3 needs-validation', 'novalidate': 'novalidate', 'enctype': 'multipart/form-data'}}) }}
+        {{ form_row(form.description,{'attr': {'class': 'row g-3 needs-validation', 'novalidate': 'novalidate', 'enctype': 'multipart/form-data'}}) }}
+        {{ form_row(form.rate,{'attr': {'class': 'row g-3 needs-validation', 'novalidate': 'novalidate', 'enctype': 'multipart/form-data'}}) }}
         <button type="submit" class="btn">Submit</button>
         {{ form_end(form) }}
     </main>

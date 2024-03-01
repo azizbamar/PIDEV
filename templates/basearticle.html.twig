@@ -34,6 +34,7 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
+    <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
 </head>
 
 <body>
@@ -48,9 +49,9 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                <li><a class="nav-link scrollto" href="#about">About</a></li>
-                <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+                <li><a class="nav-link scrollto" href="{{ path('app_client') }}">Acceuil</a></li>
+                <li><a class="nav-link scrollto" href="#services">Demande devis en ligne</a></li>
+                <li><a class="nav-link scrollto " href="{{ path('app_client') }}">Actualités</a></li>
                 <li><a class="nav-link scrollto" href="#team">Team</a></li>
                 <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
@@ -85,9 +86,8 @@
 <!-- Include Flashy default partial -->
 {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
 {%block article %}
-    {% include 'comment/_form.html.twig' %}
+
 {%endblock%}
-<link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
 
 
 
@@ -325,9 +325,12 @@
 <script src="{{asset('FrontOffice/vendor/swiper/swiper-bundle.min.js')}}"></script>
 <script src="{{asset('FrontOffice/vendor/php-email-form/validate.js')}}"></script>
 
+
 <!-- Template Main JS File -->
 <script src="{{asset('FrontOffice/js/main.js')}}"></script>
-
+<script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+<script src="//code.jquery.com/jquery.js"></script>
+{{ include('@MercurySeriesFlashy/flashy.html.twig') }}
 </body>
 
 </html>

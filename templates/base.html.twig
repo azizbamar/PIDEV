@@ -26,6 +26,10 @@
 
     <!-- Template Main CSS File -->
     <link href="{{asset('FrontOffice/css/style.css')}}" rel="stylesheet">
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+
 
     <!-- =======================================================
     * Template Name: Techie
@@ -34,7 +38,6 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
-    <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
 </head>
 
 <body>
@@ -42,7 +45,7 @@
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center justify-content-between">
-        <h1 class="logo"><a href="index.html">ProTechTini</a></h1>
+        <h1 class="logo"><a href="{{ path('client') }}">ProTechTini</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -70,7 +73,7 @@
                 </li>
                 <li><a class="nav-link scrollto" href="#team">Contact</a></li>
 
-                <li><a class="getstarted scrollto" href="#about">Se connecté</a></li>
+                <li><a class="getstarted scrollto" href="{{ path('app_article_index') }}">Se connecté</a></li>
                 <li><a class="getstarted scrollto" href="#about">Inscription</a></li>
 
             </ul>

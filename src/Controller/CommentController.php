@@ -37,14 +37,14 @@ class CommentController extends AbstractController
             $flashy->success('Commentaire ajouté!');
 
 
-            return $this->redirectToRoute('comm', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_comment_show', [], Response::HTTP_SEE_OTHER);
         }
 
         if ($form->isSubmitted() && !$form->isValid()) {
             $this->addFlash('error', 'Failed to add comment. Please check the form.');
         }
 
-        return $this->renderForm('comment.twig.html', [
+        return $this->renderForm('article/index.html.twig', [
             'comment' => $comment,
             'form' => $form,
         ]);

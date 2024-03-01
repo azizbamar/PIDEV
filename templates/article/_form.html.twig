@@ -1,4 +1,4 @@
-{{ form_start(form) }}
-{{ form_widget(form) }}
+{{ form_start(form,{'attr': {'class': 'row g-3 needs-validation', 'novalidate': 'novalidate', 'enctype': 'multipart/form-data'}}) }}
+{{ form_widget(form,{'attr': {'class': 'row g-3 needs-validation', 'novalidate': 'novalidate', 'enctype': 'multipart/form-data'}}) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{{ form_end(form,{'attr': {'class': 'row g-3 needs-validation', 'novalidate': 'novalidate', 'enctype': 'multipart/form-data'}}) }}

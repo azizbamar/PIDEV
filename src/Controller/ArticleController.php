@@ -4,9 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
-use APP\Form\CommentType;
-use App\Form\CommentFormType;
 use App\Entity\Comment;
+use App\Form\CommentType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
