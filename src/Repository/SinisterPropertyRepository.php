@@ -20,6 +20,14 @@ class SinisterPropertyRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, SinisterProperty::class);
     }
+    public function findByUserId($userId)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.SinisterUser = :userId')
+            ->setParameter('userId', $userId)
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return SinisterProperty[] Returns an array of SinisterProperty objects

@@ -20,6 +20,19 @@ class SinisterRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Sinister::class);
     }
+/**
+     * @param User $user
+     * @return Sinister[]
+     */
+  
+     public function findByUserId($userId)
+     {
+         return $this->createQueryBuilder('s')
+             ->andWhere('s.sinisterUser = :userId')
+             ->setParameter('userId', $userId)
+             ->getQuery()
+             ->getResult();
+     }
 
 //    /**
 //     * @return Sinister[] Returns an array of Sinister objects

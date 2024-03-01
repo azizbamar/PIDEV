@@ -10,10 +10,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\TwilioService; // Add this use statement
 
 #[Route('/rapport')]
 class RapportController extends AbstractController
 {
+    private $twilioService;
+
+   
+    public function __construct(TwilioService $twilioService)
+    {
+        $this->twilioService = $twilioService;
+    }
+
     #[Route('/', name: 'app_rapport_index', methods: ['GET'])]
     public function index(RapportRepository $rapportRepository): Response
     {
@@ -22,36 +31,43 @@ class RapportController extends AbstractController
         ]);
     }
 
-    
     #[Route('/new', name: 'app_rapport_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $rapport = new Rapport();
         $form = $this->createForm(RapportType::class, $rapport);
         $form->handleRequest($request);
-    
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($rapport);
             $entityManager->flush();
-    
+
             // Fetch the associated Sinister
             $sinister = $rapport->getSinisterRapport();
-    
+
             // Check if Sinister is present and set its status to "traité"
             if ($sinister) {
                 $sinister->setStatusSinister('traité');
                 $entityManager->flush();
+                $userPhoneNumber = $sinister->getSinisterUser()->getPhoneNumber();
+                $countryCode = '+216';
+                $fullPhoneNumber = $countryCode . $userPhoneNumber;
+
+                // Send the SMS
+                $this->twilioService->sendSms(
+                    $fullPhoneNumber,
+                    'Your Sinister has been treated successfully! Thank you for using our service.'
+                );
             }
-    
+
             return $this->redirectToRoute('app_rapport_index', [], Response::HTTP_SEE_OTHER);
         }
-    
+
         return $this->renderForm('rapport/new.html.twig', [
             'rapport' => $rapport,
             'form' => $form,
         ]);
     }
-    
     #[Route('/{id}', name: 'app_rapport_showAdmin', methods: ['GET'])]
     public function showAdmin(Rapport $rapport): Response
     {

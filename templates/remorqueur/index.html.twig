@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Remorqueur index{% endblock %}
+
+{% block body %}
+    <h1>Remorqueur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>PhoneNumber</th>
+                <th>Lattitude</th>
+                <th>Longuitude</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for remorqueur in remorqueurs %}
+            <tr>
+                <td>{{ remorqueur.id }}</td>
+                <td>{{ remorqueur.FirstName }}</td>
+                <td>{{ remorqueur.LastName }}</td>
+                <td>{{ remorqueur.PhoneNumber }}</td>
+                <td>{{ remorqueur.lattitude }}</td>
+                <td>{{ remorqueur.longuitude }}</td>
+                <td>
+                    <a href="{{ path('app_remorqueur_show', {'id': remorqueur.id}) }}">show</a>
+                    <a href="{{ path('app_remorqueur_edit', {'id': remorqueur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_remorqueur_new') }}">Create new</a>
+{% endblock %}

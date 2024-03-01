@@ -5,7 +5,25 @@
 {% block profile %}
     <h1>Liste Des Sinistres Vehicules </h1>
 
-    <table class="table">
+    <div>
+        <label for="orderByDate">Filtrer par Date:</label>
+        <select id="orderByDate">
+            <option value="all">Tous</option>
+            <option value="asc">Date croissante</option>
+            <option value="desc">Date décroissante</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="filterByStatus">Filtrer par Status:</label>
+        <select id="filterByStatus">
+            <option value="">Tous</option>
+            <option value="en_cours">En Cours</option>
+            <option value="traité">Traité</option>
+        </select>
+    </div>
+
+    <table class="table" id="sinisterTable">
         <thead>
             <tr>
                 <th>Id</th>
@@ -13,7 +31,6 @@
                 <th>Location</th>
                 <th>status</th>
                 <th>actions</th>
-                
             </tr>
         </thead>
         <tbody>
@@ -22,11 +39,9 @@
                 <td>{{ sinister_vehicle.id }}</td>
                 <td>{{ sinister_vehicle.dateSinister ? sinister_vehicle.dateSinister|date('Y-m-d') : '' }}</td>
                 <td>{{ sinister_vehicle.location }}</td>
-                 <td>{{ sinister_vehicle.StatusSinister }}</td>
-               
+                <td>{{ sinister_vehicle.StatusSinister }}</td>
                 <td>
                     <a href="{{ path('app_constat_showAdmin', {'id': sinister_vehicle.id}) }}">show</a>
-                  
                 </td>
             </tr>
         {% else %}
@@ -37,5 +52,37 @@
         </tbody>
     </table>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Function to filter sinisters by order and status
+            $("#orderByDate, #filterByStatus").on("change", function() {
+                var order = $("#orderByDate").val();
+                var selectedStatus = $("#filterByStatus").val();
+                filterSinisters(order, selectedStatus);
+            });
+
+            function filterSinisters(order, selectedStatus) {
+                $("#sinisterTable tbody tr").sort(function(a, b) {
+                    var dateA = new Date($(a).find("td:eq(1)").text());
+                    var dateB = new Date($(b).find("td:eq(1)").text());
+
+                    if (order === "all") {
+                        return 0; 
+                    }
+
+                    return order === "asc" ? dateA - dateB : dateB - dateA;
+                }).each(function() {
+                    var rowStatus = $(this).find("td:eq(3)").text(); // Assuming status is in the fourth column
+                    if (selectedStatus === "" || rowStatus === selectedStatus) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                }).appendTo("#sinisterTable tbody");
+            }
+        });
+    </script>
 
 {% endblock %}

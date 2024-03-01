@@ -5,11 +5,15 @@ namespace App\Controller;
 use App\Entity\SinisterProperty;
 use App\Form\SinisterPropertyType;
 use App\Repository\SinisterPropertyRepository;
+
+use App\Repository\SinisterRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\User;
+
 
 #[Route('/sinister/property')]
 class SinisterPropertyController extends AbstractController
@@ -21,18 +25,40 @@ class SinisterPropertyController extends AbstractController
             'sinister_properties' => $sinisterPropertyRepository->findAll(),
         ]);
     }
+    #[Route('/usersinistre/{userId}', name: 'app_user_sinister', methods: ['GET', 'POST'])]
 
+    public function sinistresByUser(SinisterRepository $sinistreRepository, $userId): Response
+    {
+        $sinistres = $sinistreRepository->findByUserId($userId);
+        // Do something with the $sinistres, like passing it to a template or returning a JSON response.
+
+        return $this->render('sinister_property/indexC.html.twig', [
+            'sinister_properties' => $sinistres,
+        ]);
+    }
     #[Route('/new', name: 'app_sinister_property_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        // Fetch the user based on the static ID
+        $staticUserId = 10; // Replace with the actual static user ID
+        $user = $this->getDoctrine()->getRepository(User::class)->find($staticUserId);
+
+        if (!$user) {
+            throw $this->createNotFoundException('User not found');
+        }
+
         $sinisterProperty = new SinisterProperty();
+        $sinisterProperty->setSinisterUser($user); // Associate the user with the SinisterProperty
+
         $form = $this->createForm(SinisterPropertyType::class, $sinisterProperty);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($sinisterProperty);
             $entityManager->flush();
+
             $message = "Votre déclaration de sinistre habitation a été enregistrée. Un expert la traitera et vous contactera pour plus d'informations.";
+
             return $this->render('sinister_property/new_success.html.twig', [
                 'message' => $message,
                 'sinister_property' => $sinisterProperty,
@@ -44,6 +70,7 @@ class SinisterPropertyController extends AbstractController
             'form' => $form,
         ]);
     }
+
     #[Route('/show/{id}', name: 'app_sinister_property_show', methods: ['GET'])]
     public function showAdmin(SinisterProperty $sinisterProperty): Response
     {

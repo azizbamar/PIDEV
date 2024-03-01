@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Liste Des Sinistres Habitation{% endblock %}
+
+{% block body %}
+    <h1>Liste Des Sinistres Habitation</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Type_degat</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sinister_property in sinister_properties %}
+            <tr>
+                <td>{{ sinister_property.id }}</td>
+                 <td>{{ sinister_property.dateSinister ? sinister_property.dateSinister|date('Y-m-d') : '' }}</td>
+                <td>{{ sinister_property.typeDegat }}</td>
+                
+                 <td>{{ sinister_property.StatusSinister }}</td>
+                <td>
+                    <a href="{{ path('app_sinister_property_show', {'id': sinister_property.id}) }}">show</a>
+            
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+ 
+{% endblock %}

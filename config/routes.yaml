@@ -12,3 +12,7 @@ client:
 HomePage:
     path: /HomePage
     controller: App\Controller\ClientController::HomePage
+sinistres_by_user:
+    path: /usersinistre/{userId}
+    controller: App\Controller\SinisterPropertyController::sinistresByUser
+

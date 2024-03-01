@@ -16,7 +16,13 @@
             <ul>
                 <li><a class="nav-link scrollto " href="#hero">Home</a></li>
                 <li><a class="nav-link scrollto" href="#services">Nos services</a></li>
-                <li><a class="nav-link scrollto" href="#demandes"> Demandes</a></li>
+                <li class="dropdown"><a href=""><span>Déclarer un sinistre</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href={{ path('app_constat_new') }}>Sinistre vehicule</a></li>
+              <li><a href="#">Sinistre vie</a></li>
+              <li><a href={{ path('app_sinister_property_new') }}>sinistre habitat</a></li>
+            </ul>
+          </li>
                 <li><a class="nav-link scrollto " href="#portfolio">Actualité</a></li>
                 <li class="dropdown"><a href="#"><span>Assurance</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>

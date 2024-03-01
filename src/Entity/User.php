@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Service\TwilioService;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -32,9 +33,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Sinister::class, mappedBy: 'sinisterUser')]
     private Collection $sinisters;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $nbRemorquages = 0;
+
+    #[ORM\Column(length: 255)]
+    private ?string $PhoneNumber = null;
+
     public function __construct()
     {
         $this->sinisters = new ArrayCollection();
+        $this->nbRemorquages = 0;
     }
 
     public function getId(): ?int
@@ -155,4 +163,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getNbRemorquages(): ?int
+    {
+        return $this->nbRemorquages;
+    }
+
+    public function setNbRemorquages(?int $nbRemorquages): static
+    {
+        $this->nbRemorquages = $nbRemorquages;
+
+        return $this;
+    }
+
+    public function getPhoneNumber(): ?string
+    {
+        return $this->PhoneNumber;
+    }
+
+    public function setPhoneNumber(string $PhoneNumber): static
+    {
+        $this->PhoneNumber = $PhoneNumber;
+
+        return $this;
+    }
+
 }

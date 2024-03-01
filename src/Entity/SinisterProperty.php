@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: SinisterPropertyRepository::class)]
 class SinisterProperty extends Sinister
 {
-   
+
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'veuillez sélectionner le type de dégat')]
