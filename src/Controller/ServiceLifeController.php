@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 
 #[Route('/service/life')]
 class ServiceLifeController extends AbstractController
@@ -34,7 +35,7 @@ class ServiceLifeController extends AbstractController
 
 
     #[Route('/{id}/new', name: 'app_service_life_new', methods: ['GET', 'POST'])]
-    public function newService($id,Request $request, EntityManagerInterface $entityManager): Response
+    public function newService($id,Request $request, EntityManagerInterface $entityManager,FlashyNotifier $flashy): Response
     {
         $serviceLife = new ServiceLife();
         $form = $this->createForm(ServiceLifeType::class, $serviceLife);
@@ -44,8 +45,9 @@ class ServiceLifeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($serviceLife);
             $entityManager->flush();
+            $flashy->success('ServiceLife created !');
 
-            return $this->redirectToRoute('app_service_life_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_question_show', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('service_life/new.html.twig', [
@@ -63,31 +65,38 @@ class ServiceLifeController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_service_life_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, ServiceLife $serviceLife, EntityManagerInterface $entityManager): Response
+    public function edit($id,Request $request, ServiceLife $serviceLife, EntityManagerInterface $entityManager,FlashyNotifier $flashy): Response
     {
         $form = $this->createForm(ServiceLifeType::class, $serviceLife);
         $form->handleRequest($request);
+        $questionId = $serviceLife->getQuestion()->getId();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $flashy->success('ServiceLife updated !');
 
-            return $this->redirectToRoute('app_service_life_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_question_show', ['id' => $questionId], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('service_life/edit.html.twig', [
             'service_life' => $serviceLife,
             'form' => $form,
+            'id' => $questionId,
         ]);
     }
 
     #[Route('/{id}', name: 'app_service_life_delete', methods: ['POST'])]
-    public function delete(Request $request, ServiceLife $serviceLife, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, ServiceLife $serviceLife, EntityManagerInterface $entityManager,FlashyNotifier $flashy): Response
     {
+        $questionId = $serviceLife->getQuestion()->getId();
+
         if ($this->isCsrfTokenValid('delete'.$serviceLife->getId(), $request->request->get('_token'))) {
             $entityManager->remove($serviceLife);
             $entityManager->flush();
+            $flashy->success('ServiceLife deleted !');
+
         }
 
-        return $this->redirectToRoute('app_service_life_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_question_show', ['id' => $questionId], Response::HTTP_SEE_OTHER);
     }
 }

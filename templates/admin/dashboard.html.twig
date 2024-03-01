@@ -8,7 +8,8 @@
     <title>Dashboard - NiceAdmin Bootstrap Template</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>
     <!-- Favicons -->
     <link href="{{asset('backOffice/img/favicon.png')}}" rel="icon">
     <link href="{{asset('backOffice/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
@@ -29,13 +30,8 @@
     <!-- Template Main CSS File -->
     <link href="{{asset('backOffice/css/style.css')}}" rel="stylesheet">
 
-    <!-- =======================================================
-    * Template Name: NiceAdmin
-    * Updated: Jan 29 2024 with Bootstrap v5.3.2
-    * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
+    <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+
 </head>
 
 <body>
@@ -389,9 +385,17 @@
  {% block profile %}
     
     {% endblock %}
+    <!-- Flashy depends on jQuery -->
+<script src="//code.jquery.com/jquery.js"></script>
+<!-- Load Flashy default JavaScript -->
+<script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+<!-- Include Flashy default partial -->
+{{ include('@MercurySeriesFlashy/flashy.html.twig') }}
     {% block body %}
+
     
     {% endblock %}
+
 </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
@@ -410,6 +414,7 @@
 
 <!-- Template Main JS File -->
 <script src="{{asset('backOffice/js/main.js')}}"></script>
+
 {% block content %}
     
 {% endblock %}

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-use App\Entity\Question;
 use App\Repository\QuestionRepository;
 use App\Repository\ServiceRepository;
 use App\Entity\Quote;
@@ -13,6 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 #[Route('/quote')]
 class QuoteController extends AbstractController
@@ -122,4 +123,35 @@ class QuoteController extends AbstractController
 
         return $this->redirectToRoute('app_quote_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
+    
+    #[Route('/print/{id}', name: 'app_quote_print')]
+    public function print($id,QuoteRepository $quoteRepository):void
+    {
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont','Arial');
+        $pdfOptions->setIsRemoteEnabled(true);
+        $pdfOptions->set('isHtml5ParserEnabled',true);
+        $dompdf = new Dompdf($pdfOptions);
+        $date = date("Y/m/d");
+        $quote = $quoteRepository->find($id);
+        $html = $this->renderView('quote/print.html.twig',[
+            'id' => $id,
+            'date' => $date,
+            'quote' => $quote
+        ]);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4','portrait');
+        // Render the HTML as PDF
+        $dompdf->render();
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream('devis.pdf',["Attachment" => true]);    
+
+     
+    }
+
+
+    
 }

@@ -7,7 +7,7 @@
 
     {{ include('service_life/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a class="btn btn-secondary" href="{{ path('app_service_life_index_per_question',{'id': id}) }}">back to list</a>
+    <a class="btn btn-secondary" href="{{ path('app_question_show',{'id': id}) }}">back to list</a>
 
     {{ include('service_life/_delete_form.html.twig') }}
 {% endblock %}

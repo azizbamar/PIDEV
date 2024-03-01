@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 
 #[Route('/service/property')]
 class ServicePropertyController extends AbstractController
@@ -33,7 +34,7 @@ class ServicePropertyController extends AbstractController
     }
 
     #[Route('/{id}/new', name: 'app_service_property_new', methods: ['GET', 'POST'])]
-    public function newService($id,Request $request, EntityManagerInterface $entityManager): Response
+    public function newService($id,Request $request, EntityManagerInterface $entityManager,FlashyNotifier $flashy): Response
     {
         $serviceProperty = new ServiceProperty();
         $form = $this->createForm(ServicePropertyType::class, $serviceProperty);
@@ -43,8 +44,9 @@ class ServicePropertyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($serviceProperty);
             $entityManager->flush();
+            $flashy->success('ServiceProperty created !');
 
-            return $this->redirectToRoute('app_service_property_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_question_show', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('service_property/new.html.twig', [
@@ -62,31 +64,36 @@ class ServicePropertyController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_service_property_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, ServiceProperty $serviceProperty, EntityManagerInterface $entityManager): Response
+    public function edit($id,Request $request, ServiceProperty $serviceProperty, EntityManagerInterface $entityManager,FlashyNotifier $flashy): Response
     {
         $form = $this->createForm(ServicePropertyType::class, $serviceProperty);
         $form->handleRequest($request);
-
+        $questionId = $serviceProperty->getQuestion()->getId();
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $flashy->success('ServiceProperty updated !');
 
-            return $this->redirectToRoute('app_service_property_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_question_show', ['id' => $questionId], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('service_property/edit.html.twig', [
             'service_property' => $serviceProperty,
             'form' => $form,
+            'id' => $questionId,
         ]);
     }
 
     #[Route('/{id}', name: 'app_service_property_delete', methods: ['POST'])]
-    public function delete(Request $request, ServiceProperty $serviceProperty, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, ServiceProperty $serviceProperty, EntityManagerInterface $entityManager,FlashyNotifier $flashy): Response
     {
+        $questionId = $serviceProperty->getQuestion()->getId();
         if ($this->isCsrfTokenValid('delete'.$serviceProperty->getId(), $request->request->get('_token'))) {
             $entityManager->remove($serviceProperty);
             $entityManager->flush();
+            $flashy->success('ServiceProperty deleted !');
+
         }
 
-        return $this->redirectToRoute('app_service_property_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_question_show', ['id' => $questionId], Response::HTTP_SEE_OTHER);
     }
 }

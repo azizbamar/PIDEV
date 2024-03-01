@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 
 #[Route('/service/auto')]
 class ServiceAutoController extends AbstractController
@@ -32,7 +33,7 @@ class ServiceAutoController extends AbstractController
 
 
     #[Route('/{id}/new', name: 'app_service_auto_new', methods: ['GET', 'POST'])]
-    public function newService($id,Request $request, EntityManagerInterface $entityManager): Response
+    public function newService($id,Request $request, EntityManagerInterface $entityManager,FlashyNotifier $flashy): Response
     {
         $serviceAuto = new ServiceAuto();
         $form = $this->createForm(ServiceAutoType::class, $serviceAuto);
@@ -43,8 +44,10 @@ class ServiceAutoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($serviceAuto);
             $entityManager->flush();
+            $flashy->success('ServiceAuto created !');
 
-            return $this->redirectToRoute('app_service_auto_index_per_question', ['id' => $id]);
+
+            return $this->redirectToRoute('app_question_show', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('service_auto/new.html.twig', [
@@ -62,32 +65,38 @@ class ServiceAutoController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_service_auto_edit', methods: ['GET', 'POST'])]
-    public function edit($id,Request $request, ServiceAuto $serviceAuto, EntityManagerInterface $entityManager): Response
+    public function edit($id,Request $request, ServiceAuto $serviceAuto, EntityManagerInterface $entityManager,FlashyNotifier $flashy): Response
     {
         $form = $this->createForm(ServiceAutoType::class, $serviceAuto);
         $form->handleRequest($request);
+        $questionId = $serviceAuto->getQuestion()->getId();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $flashy->success('ServiceAuto updated !');
 
-            return $this->redirectToRoute('app_service_auto_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_question_show', ['id' => $questionId], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('service_auto/edit.html.twig', [
             'service_auto' => $serviceAuto,
             'form' => $form,
-            'id' => $id,
+            'id' => $questionId,
         ]);
     }
 
     #[Route('/{id}', name: 'app_service_auto_delete', methods: ['POST'])]
-    public function delete(Request $request, ServiceAuto $serviceAuto, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, ServiceAuto $serviceAuto, EntityManagerInterface $entityManager,FlashyNotifier $flashy): Response
     {
+        $questionId = $serviceAuto->getQuestion()->getId();
+
         if ($this->isCsrfTokenValid('delete'.$serviceAuto->getId(), $request->request->get('_token'))) {
             $entityManager->remove($serviceAuto);
             $entityManager->flush();
+            $flashy->success('ServiceAuto deleted !');
+
         }
 
-        return $this->redirectToRoute('app_service_auto_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_question_show', ['id' => $questionId], Response::HTTP_SEE_OTHER);
     }
 }
