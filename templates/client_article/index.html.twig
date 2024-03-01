@@ -1,0 +1,103 @@
+{% extends 'basearticle.html.twig' %}
+
+{% block title %} {{ article.title }} {% endblock %}
+
+{% block article %}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>ProTechTini</title>
+        <!-- Add your other meta tags, stylesheets, and scripts here -->
+    </head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        main {
+            margin: auto;
+            width: 80%; /* Adjust width as needed */
+            text-align: left;
+            padding: 20px;
+        }
+        .comment-box {
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .comment-box textarea {
+            width: 80%;
+            height: 100px;
+            resize: none;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .stars {
+            display: inline-block;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .stars .star {
+            color: #ccc;
+        }
+        .stars .star.selected {
+            color: orange;
+        }
+        .stars .star:hover {
+            color: orange;
+        }
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        #main {
+            margin-top: 200px; /* Adjust top margin for space under navigation */
+            margin-left: 10px; /* Align content to the left */
+        }
+    </style>
+    <body>
+    <!-- Your header and navigation code -->
+
+    <main id="main">
+        <!-- Your main content, possibly including the article -->
+                <h1>{{ article.title }}</h1>
+                <ul>
+                        <p>Publication Date: {{ article.datepub|date('F j, Y') }}</p>
+                        <p>Author: {{ article.authorname }}</p>                        {% if article.image %}
+                            <img src="{{ asset('uploads/images/' ~ article.image) }}" style="height: 500px;width: 500px;" class="bx-rectangle" alt="article Image">
+                        {% else %}
+                            <p>No image available</p>
+                        {% endif %}
+                        <p>Description: {{ article.description }}</p>
+
+
+                </ul>
+
+        <h2>Add a comment</h2>
+        {{ form_start(form) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.rate) }}
+        <button type="submit" class="btn">Submit</button>
+        {{ form_end(form) }}
+    </main>
+
+    <!-- Your footer and other scripts -->
+    </body>
+    </html>
+
+{% endblock %}

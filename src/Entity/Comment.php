@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
@@ -13,37 +14,67 @@ class Comment
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $review = null;
-
     #[ORM\Column(length: 255)]
-    private ?string $descript = null;
+    private ?string $description = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $rate = null;
+
+    #[ORM\ManyToOne(inversedBy: 'comment')]
+    private ?Article $article = null;
+
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    private ?Article $articleC = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getReview(): ?int
+    public function getDescription(): ?string
     {
-        return $this->review;
+        return $this->description;
     }
 
-    public function setReview(int $review): static
+    public function setDescription(string $description): static
     {
-        $this->review = $review;
+        $this->description = $description;
 
         return $this;
     }
 
-    public function getDescript(): ?string
+    public function getRate(): ?string
     {
-        return $this->descript;
+        return $this->rate;
     }
 
-    public function setDescript(string $descript): static
+    public function setRate(string $rate): static
     {
-        $this->descript = $descript;
+        $this->rate = $rate;
+
+        return $this;
+    }
+
+    public function getArticle(): ?Article
+    {
+        return $this->article;
+    }
+
+    public function setArticle(?Article $article): static
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    public function getArticleC(): ?Article
+    {
+        return $this->articleC;
+    }
+
+    public function setArticleC(?Article $articleC): static
+    {
+        $this->articleC = $articleC;
 
         return $this;
     }
