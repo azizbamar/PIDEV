@@ -16,6 +16,7 @@ class ContratVehiculeType extends AbstractType
     {
         $builder
             ->add('Date_debut')
+            ->add('Prix')
             ->add('Date_fin')
             ->add('Description')
             ->add('MatriculeAgent')

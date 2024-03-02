@@ -7,7 +7,7 @@
 
     <h2>VehicleRequest index</h2>
     </div>
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -29,7 +29,7 @@
                 <td>{{ vehicle_request.id }}</td>
                 <td>{{ vehicle_request.dateRequest ? vehicle_request.dateRequest|date('Y-m-d') : '' }}</td>
                 <td>{{ vehicle_request.typeInsurance }}</td>
-                <td>{{ vehicle_request.status }}</td>
+                <td class="{% if vehicle_request.status == 'Accepter' %}text-success{% elseif vehicle_request.status == 'Refusée' %}text-danger{% endif %}">{{ vehicle_request.status }}</td>
                 <td>{{ vehicle_request.Marque }}</td>
                 <td>{{ vehicle_request.Modele }}</td>
                 <td>{{ vehicle_request.FabYear ? vehicle_request.FabYear|date('Y-m-d') : '' }}</td>

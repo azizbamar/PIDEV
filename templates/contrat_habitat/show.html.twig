@@ -3,11 +3,17 @@
 {% block title %}ContratHabitat{% endblock %}
 
 {% block body %}
-<div class="section-title">
-        <h2> Contrat d'assurance habitat</h2>
-     </div>
-    <table class="table">
-        <tbody>
+<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+
+  <div class="row justify-content-center">
+         <div class="col-md-12 offset-md-1">
+
+             <div class="card w-400 h-300">
+                 <div class="card-body">
+                     <h5 class="card-title"> Contrats vehicule {{ contrat_habitat.id }}</h5>
+                     <table class="table table-striped">
+                         <thead>
+
             <tr>
                 <th>Id</th>
                 <td>{{ contrat_habitat.id }}</td>
@@ -31,9 +37,20 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_contrat_habitat_index') }}">back to list</a>
-
-    <a href="{{ path('app_contrat_habitat_edit', {'id': contrat_habitat.id}) }}">edit</a>
+<form action="{{ path('app_contrat_habitat_index') }}" method="get" style="display: inline;">
+    <button type="submit" class="btn btn-primary">back to list</button>
+</form>
+<form action="{{ path('app_contrat_habitat_edit', {'id': contrat_habitat.id}) }}" method="get" style="display: inline;">
+    <button type="submit" class="btn btn-primary">Edit</button>
+</form>
+<form action="{{ path('contrat_habitat.pdf', {'id': contrat_habitat.id}) }}" method="get" style="display: inline;">
+    <button type="submit" class="btn btn-primary">Télecharger le contrat</button>
+</form>
 
     {{ include('contrat_habitat/_delete_form.html.twig') }}
+      </div>
+        </div>
+        </div>
+        </div>
+        </section>
 {% endblock %}

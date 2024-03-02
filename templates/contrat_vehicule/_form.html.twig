@@ -1,15 +1,63 @@
 
-<body>
-<div class="section-title">
-        <h2>Contrat vehicule</h2>
-     </div>
-  <main>
-    <div class="container">
+ <div class="container">
+<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4" style="margin-top: 50px;">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Demandes assurance {{ contrat_vehicule.id }}</h5>
+                                <table class="table table-striped">
 
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-<div class="card mb-3">
+                                    <thead>
 
-                <div class="card-body">
+ <tr>
+                <th>Id</th>
+                <td>{{ vehicleRequest.id}}</td>
+
+            </tr>
+            <tr>
+                <th>Date demande</th>
+                <td>{{ vehicleRequest.dateRequest ? vehicleRequest.dateRequest|date('Y-m-d') : '' }}</td>
+
+            </tr>
+            <tr>
+                <th>Type assurance</th>
+                <td>{{ vehicleRequest.typeInsurance }}</td>
+            </tr>
+
+            <tr>
+                <th>Forme habitst</th>
+                <td>{{ vehicleRequest.Marque }}</td>
+            </tr>
+            <tr>
+                <th>Nb piéces</th>
+                <td>{{ vehicleRequest.Modele }}</td>
+            </tr>
+               <tr>
+                            <th>Adresse</th>
+                <td>{{ vehicleRequest.FabYear ? vehicleRequest.FabYear|date('Y-m-d') : '' }}</td>
+                        </tr>
+                           <tr>
+                                        <th>Valeur</th>
+                <td>{{ vehicleRequest.serialNumber }}</td>
+                                    </tr>
+                                        <tr>
+                              <th>Surface</th>
+                <td>{{ vehicleRequest.matriculNumber }}</td>
+                                 </tr>
+                    <tr>
+                                                                                               <th>Surface</th>
+                                   <td>{{ vehicleRequest.vehiclePrice }}</td>
+                                                                                           </tr>
+         </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Contrat</h5>
 
 
 {{ form_start(form, {'attr': {'class': 'row g-3 needs-validation', 'novalidate': 'novalidate', 'style': 'max-width: 400px;'}}) }}
@@ -53,6 +101,15 @@
                                                      </div>
                                                  {% endif %}
          </div>
+         <div class="col-12">
+                              <label for="Prix" class="form-label">Prix du contrat</label>
+                              {{ form_widget(form.Prix, {'attr': {'class': 'form-control', 'id': 'MatriculeAgent'}}) }}
+                              {% if form_errors(form.Prix) %}
+                                                                      <div class="alert alert-danger">
+                                                                          {{ form_errors(form.Prix) }}
+                                                                      </div>
+                                                                  {% endif %}
+                          </div>
     <div class="col-12">
             <label for="MatriculeAgent" class="form-label">Matricule de l'agent</label>
             {{ form_widget(form.MatriculeAgent, {'attr': {'class': 'form-control', 'id': 'MatriculeAgent'}}) }}
@@ -77,14 +134,12 @@
 
 {{ form_end(form) }}
 </div>
-</div>
-      </section>
-
-    </div>
-  </main><!-- End #main -->
-
-
-
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 </body>
 <script src="https://cdn.tiny.cloud/1/ub6o7cjftjfjbqyaxyfe4htncw5a624e8yh2p2b46s55pcd0/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>

@@ -11,20 +11,31 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Notification;
+use App\Entity\InsuranceRequest;
+use Knp\Component\Pager\PaginatorInterface;
+use MercurySeries\FlashyBundle\FlashyNotifier;
+
 
 #[Route('/proprety/request')]
 class PropretyRequestController extends AbstractController
 {
     #[Route('/', name: 'app_proprety_request_index', methods: ['GET'])]
-    public function index(PropretyRequestRepository $propretyRequestRepository): Response
+    public function index(PaginatorInterface $paginator, PropretyRequestRepository $propretyRequestRepository, Request $request): Response
     {
-        return $this->render('proprety_request/index.html.twig', [
-            'proprety_requests' => $propretyRequestRepository->findAll(),
-        ]);
+     $pagination = $paginator->paginate(
+                               $propretyRequestRepository->findAll(),
+                               $request->query->getInt('page', 1), // Get the page number from the request
+                               5 // Number of items per page
+                           );
+                return $this->render('proprety_request/index.html.twig', [
+                    'proprety_requests' => $pagination,
+                ]);
+
     }
 
     #[Route('/New_PropretyRequest', name: 'app_proprety_request_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(FlashyNotifier $flashy, Request $request, EntityManagerInterface $entityManager): Response
     {
         $propretyRequest = new PropretyRequest();
         $form = $this->createForm(PropretyRequestType::class, $propretyRequest);
@@ -33,6 +44,22 @@ class PropretyRequestController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($propretyRequest);
             $entityManager->flush();
+            $flashy->success('save !');
+
+$notification = new Notification();
+$typeInsurance = $propretyRequest->getTypeInsurance();
+$titre = 'Demande d\'assurance ' . $typeInsurance;
+
+$notification->setTitre($titre);
+
+$notification->setMessage('Une nouvelle demande d\'assurance a été ajoutée.');
+$notification->setDateNotification(date('Y-m-d H:i:s')); // Ajoutez la date de notification, par exemple la date actuelle
+
+// Persistez l'entité
+$entityManager->persist($notification);
+
+// Flush pour sauvegarder dans la base de données
+$entityManager->flush();
 
             return $this->redirectToRoute('app_proprety_request_index', [], Response::HTTP_SEE_OTHER);
         }

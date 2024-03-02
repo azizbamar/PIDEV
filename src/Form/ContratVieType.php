@@ -18,6 +18,7 @@ class ContratVieType extends AbstractType
             ->add('Date_fin')
             ->add('Description')
             ->add('MatriculeAgent')
+            ->add('Prix')
             ->add('request', EntityType::class, [
                            'class' => LifeRequest::class,
                            'choice_label' => 'id',

@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Notification;
 
 #[Route('/vehicle/request')]
 class VehicleRequestController extends AbstractController
@@ -33,7 +34,14 @@ class VehicleRequestController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($vehicleRequest);
             $entityManager->flush();
-
+            $notification = new Notification();
+            $typeInsurance = $vehicleRequest->getTypeInsurance();
+            $titre = 'Demande d\'assurance ' . $typeInsurance;
+            $notification->setTitre($titre);
+            $notification->setMessage('Une nouvelle demande d\'assurance a été ajoutée.');
+            $notification->setDateNotification(date('Y-m-d H:i:s'));
+            $entityManager->persist($notification);
+            $entityManager->flush();
             return $this->redirectToRoute('app_vehicle_request_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -73,6 +81,7 @@ class VehicleRequestController extends AbstractController
     public function delete(Request $request, VehicleRequest $vehicleRequest, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$vehicleRequest->getId(), $request->request->get('_token'))) {
+
             $entityManager->remove($vehicleRequest);
             $entityManager->flush();
         }

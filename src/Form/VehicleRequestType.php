@@ -26,7 +26,6 @@ class VehicleRequestType extends AbstractType
                  ],
                  'placeholder' => 'Choisir le type de votre assurance',
              ])
-            ->add('status')
             ->add('Marque', TextType::class, [
                                             'attr' => [
                                                 'placeholder' => 'Entrez la marque de votre vehicule',

@@ -33,6 +33,9 @@ class ContratHabitat extends ContratAssurance
 
     private ?string $MatriculeAgent = null;
 
+    #[ORM\Column(length: 20)]
+    private ?string $Prix = null;
+
 
 
     public function getDateDebut(): ?\DateTimeInterface
@@ -79,6 +82,18 @@ class ContratHabitat extends ContratAssurance
     public function setMatriculeAgent(string $MatriculeAgent): static
     {
         $this->MatriculeAgent = $MatriculeAgent;
+
+        return $this;
+    }
+
+    public function getPrix(): ?string
+    {
+        return $this->Prix;
+    }
+
+    public function setPrix(string $Prix): static
+    {
+        $this->Prix = $Prix;
 
         return $this;
     }

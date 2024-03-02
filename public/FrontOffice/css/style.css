@@ -1435,7 +1435,7 @@ section {
 --------------------------------------------------------------*/
 .breadcrumbs {
   padding: 15px 0;
-  background: #f2f6f9;
+  background: #ffffff;
   min-height: 40px;
   margin-top: 85px;
 }
@@ -1467,7 +1467,7 @@ section {
 .breadcrumbs ol li+li::before {
   display: inline-block;
   padding-right: 10px;
-  color: #3c6387;
+  color: #ffffff;
   content: "/";
 }
 
@@ -1646,4 +1646,13 @@ section {
   background: rgba(255, 255, 255, 0.2);
   color: #fff;
   text-decoration: none;
+}
+
+.affichage .table tbody tr {
+  background: linear-gradient(45deg, #5846f9 0%, #7b27d8 100%);
+  color: white; /* Couleur du texte dans la ligne */
+}
+.btn-create {
+  background: linear-gradient(180deg, #5846f9 0%, #7b27d8 100%);
+
 }

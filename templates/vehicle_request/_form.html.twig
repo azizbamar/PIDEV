@@ -33,10 +33,7 @@
                                         <label for="typeInsurance" class="form-label">Type de l'assurance</label>
                                         {{ form_widget(form.typeInsurance, {'attr': {'class': 'form-control', 'id': 'typeInsurance'}}) }}
                                     </div>
-                                    <div class="col-12">
-                                        <label for="status" class="form-label">status</label>
-                                        {{ form_widget(form.status, {'attr': {'class': 'form-control', 'id': 'status'}}) }}
-                                    </div>
+
                                     <div class="col-12">
                                         <label for="requestUser" class="form-label">Client </label>
                                         {{ form_widget(form.requestUser, {'attr': {'class': 'form-control', 'id': 'requestUser'}}) }}
@@ -111,7 +108,7 @@
                                                 Previous</button>
                                         </div>
                                         <div class="col">
-                                            <button class="read-more" onclick="submitForm()">{{ button_label|default('Save') }} <i class="bi bi-check"></i>
+                                            <button class="btn btn-primary w-100" onclick="submitForm()">{{ button_label|default('Save') }} <i class="bi bi-check"></i>
                                             </button>
                                         </div>
                                     </div>

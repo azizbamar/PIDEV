@@ -1,15 +1,64 @@
+
 <body>
-<div class="section-title">
+    <div class="section-title">
         <h2>Contrat habitat</h2>
-     </div>
-  <main>
-    <div class="container">
+    </div>
+    <main>
+        <div class="container">
+            <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Demande assurance </h5>
+                                <table class="table table-striped">
 
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-<div class="card mb-3">
+                                    <thead>
 
-                <div class="card-body">
+ <tr>
+                <th>Id</th>
+                <td>{{ propertyRequest.id}}</td>
 
+            </tr>
+            <tr>
+                <th>Date demande</th>
+                <td>{{ propertyRequest.dateRequest ? propertyRequest.dateRequest|date('Y-m-d') : '' }}</td>
+
+            </tr>
+            <tr>
+                <th>Type assurance</th>
+                <td>{{ propertyRequest.typeInsurance }}</td>
+            </tr>
+
+            <tr>
+                <th>Forme habitst</th>
+                <td>{{ propertyRequest.PropertyForme }}</td>
+            </tr>
+            <tr>
+                <th>Nb piéces</th>
+                <td>{{ propertyRequest.NumberRooms }}</td>
+            </tr>
+               <tr>
+                            <th>Adresse</th>
+                <td>{{ propertyRequest.Address }}</td>
+                        </tr>
+                           <tr>
+                                        <th>Valeur</th>
+                <td>{{ propertyRequest.PropertyValue }}</td>
+                                    </tr>
+                                        <tr>
+                                                                            <th>Surface</th>
+                <td>{{ propertyRequest.Surface }}</td>
+                                                                        </tr>
+         </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Contrat</h5>
 
 {{ form_start(form, {'attr': {'class': 'row g-3 needs-validation', 'novalidate': 'novalidate', 'style': 'max-width: 400px;'}}) }}
 {% if form_errors(form) %}
@@ -52,6 +101,15 @@
                                                      </div>
                                                  {% endif %}
          </div>
+          <div class="col-12">
+                     <label for="Prix" class="form-label">Prix du contrat</label>
+                     {{ form_widget(form.Prix, {'attr': {'class': 'form-control', 'id': 'MatriculeAgent'}}) }}
+                     {% if form_errors(form.Prix) %}
+                                                             <div class="alert alert-danger">
+                                                                 {{ form_errors(form.Prix) }}
+                                                             </div>
+                                                         {% endif %}
+                 </div>
     <div class="col-12">
             <label for="MatriculeAgent" class="form-label">Matricule de l'agent</label>
             {{ form_widget(form.MatriculeAgent, {'attr': {'class': 'form-control', 'id': 'MatriculeAgent'}}) }}
@@ -76,12 +134,10 @@
 
 {{ form_end(form) }}
 </div>
-</div>
-      </section>
-
-    </div>
-  </main><!-- End #main -->
-
-
-
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 </body>

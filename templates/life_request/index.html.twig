@@ -3,6 +3,7 @@
 {% block title %}LifeRequest index{% endblock %}
 
 {% block body %}
+
 <div class="section-title">
          <h2>Liste des assurances maladies</h2>
       </div>
@@ -27,7 +28,7 @@
                 <td>{{ life_request.id }}</td>
                 <td>{{ life_request.dateRequest ? life_request.dateRequest|date('Y-m-d') : '' }}</td>
                 <td>{{ life_request.typeInsurance }}</td>
-                <td>{{ life_request.status }}</td>
+                <td class="{% if life_request.status == 'Accepter' %}text-success{% elseif life_request.status == 'Refusée' %}text-danger{% endif %}">{{ life_request.status }}</td>
                 <td>{{ life_request.Age }}</td>
                 <td>{{ life_request.chronDisease }}</td>
                 <td>{{ life_request.surgery }}</td>
@@ -48,4 +49,13 @@
     </table>
 
     <a href="{{ path('app_life_request_new') }}">Create new</a>
+    <nav aria-label="Page navigation example">
+                <ul class="pagination " style="float: right;">
+                    {{ knp_pagination_render(life_requests) }}
+                </ul>
+            </nav>
+            <br>
+            <br>
+            <br>
+            <br>
 {% endblock %}

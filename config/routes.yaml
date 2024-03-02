@@ -53,4 +53,53 @@ app_contrat_vehicule_show_in_contrat:
     path: '/showDemandes_vehicule'
     controller: 'App\Controller\ContratVehiculeController::showDemandes_vehicule'
     methods: ['GET']
+app_stripe:
+    path: /stripe
+    controller: App\Controller\StripeController::index
+    methods: ['GET']
 
+
+payment/checkout:
+    path: /payment/checkout
+    controller: App\Controller\StripeController::checkout
+    methods: ['GET']
+
+pp_notification_show:
+    path: '/notification/{id}'
+    controller: 'App\Controller\NotificationController::show'
+    methods: ['GET']
+
+app_stripe_charge:
+    path: '/stripe/create-charge'
+    controller: 'App\Controller\StripeController::createCharge'
+    methods: ['GET','POST']
+
+refuser_demande:
+    path: /refuser-demande/{id}
+    controller: App\Controller\ContratVehiculeController::refuserDemande
+    methods: ['GET','POST']
+
+refuser_demande_life:
+    path: /refuser-demande-vie/{id}
+    controller: App\Controller\ContratVieController::refuserDemande
+    methods: ['GET','POST']
+
+refuser_demande_habitat:
+    path: /refuser-demande-habitat/{id}
+    controller: App\Controller\ContratHabitatController::refuserDemande
+    methods: ['GET','POST']
+
+pdf:
+    path: /pdf/{id}
+    controller: App\Controller\ContratHabitatController::generatePdfPersonne
+    methods: ['GET','POST']
+
+pdf_vehicule:
+    path: /pdf_vehicule/{id}
+    controller: App\Controller\ContratVehiculeController::generatePdfPersonne
+    methods: ['GET','POST']
+
+pdf_vie:
+    path: /pdf_vie/{id}
+    controller: App\Controller\ContratVieController::generatePdfPersonne
+    methods: ['GET','POST']

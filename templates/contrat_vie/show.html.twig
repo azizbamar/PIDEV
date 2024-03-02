@@ -3,14 +3,17 @@
 {% block title %}ContratVie{% endblock %}
 
 {% block body %}
-    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-   <div class="row row g-3">
-       <h1>Contrat vie {{ contrat_vie.id }}</h1>
+   <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
 
+     <div class="row justify-content-center">
+            <div class="col-md-12 offset-md-1">
+                <div class="card w-400 h-300">
+                    <div class="card-body">
+                        <h5 class="card-title"> Contrats vie {{ contrat_vie.id }}</h5>
+                        <table class="table table-striped">
+                            <thead>
 
-    <table class="table">
-        <tbody>
-            <tr>
+               <tr>
                 <th>Id</th>
                 <td>{{ contrat_vie.id }}</td>
             </tr>
@@ -36,8 +39,13 @@
     <a href="{{ path('app_contrat_vie_index') }}">back to list</a>
 
     <a href="{{ path('app_contrat_vie_edit', {'id': contrat_vie.id}) }}">edit</a>
-
+<form action="{{ path('contrat_vie.pdf', {'id': contrat_vie.id}) }}" method="get" style="display: inline;">
+        <button type="submit" class="btn btn-primary">Télecharger le contrat</button>
+    </form>
     {{ include('contrat_vie/_delete_form.html.twig') }}
-    </div>
-        </section>
+   </div>
+       </div>
+       </div>
+       </div>
+       </section>
 {% endblock %}

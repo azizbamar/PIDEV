@@ -30,11 +30,12 @@ class InsuranceRequest
 
     private ?string $typeInsurance = null;
 
-    #[ORM\Column(length: 20)]
-    #[Assert\NotBlank (message:"Status is required")]
-    private ?string $status = null;
+
+     #[ORM\Column(length: 255, nullable: true)]
+     private ?string $status = 'en_cours';
 
     #[ORM\ManyToOne(inversedBy: 'insuranceRequests')]
+
     private ?User $requestUser = null;
 
 

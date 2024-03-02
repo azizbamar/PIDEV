@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Entity\User;
+use Knp\Component\Pager\PaginatorInterface;
 
 use App\Entity\LifeRequest;
 use App\Form\LifeRequestType;
@@ -12,21 +13,29 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-
+use App\Entity\Notification;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 
 #[Route('/life/request')]
 class LifeRequestController extends AbstractController
 {
     #[Route('/', name: 'app_life_request_index', methods: ['GET'])]
-    public function index(LifeRequestRepository $lifeRequestRepository): Response
+    public function index(PaginatorInterface $paginator, LifeRequestRepository $lifeRequestRepository, Request $request
+): Response
     {
-        return $this->render('life_request/index.html.twig', [
-            'life_requests' => $lifeRequestRepository->findAll(),
-        ]);
+    $pagination = $paginator->paginate(
+                           $lifeRequestRepository->findAll(),
+                           $request->query->getInt('page', 1), // Get the page number from the request
+                           5 // Number of items per page
+                       );
+            return $this->render('life_request/index.html.twig', [
+                'life_requests' => $pagination,
+            ]);
+
     }
 
     #[Route('/new', name: 'app_life_request_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
+    public function new(FlashyNotifier $flashy, Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
     {
         $lifeRequest = new LifeRequest();
         $form = $this->createForm(LifeRequestType::class, $lifeRequest);
@@ -53,6 +62,15 @@ class LifeRequestController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($lifeRequest);
+            $entityManager->flush();
+            $flashy->success('save !');
+            $notification = new Notification();
+            $typeInsurance = $lifeRequest->getTypeInsurance();
+            $titre = 'Demande d\'assurance ' . $typeInsurance;
+            $notification->setTitre($titre);
+            $notification->setMessage('Une nouvelle demande d\'assurance a été ajoutée.');
+            $notification->setDateNotification(date('Y-m-d H:i:s'));
+            $entityManager->persist($notification);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_life_request_index', [], Response::HTTP_SEE_OTHER);
