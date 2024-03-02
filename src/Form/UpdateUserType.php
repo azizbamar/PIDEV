@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+<<<<<<< HEAD
 use App\Service\DatabaseService;
 use App\Controller\UserController;
 
@@ -19,6 +20,12 @@ class UpdateUserType extends AbstractType
         $this->databaseService = $databaseService;
         $this->userController = $userController;
     }
+=======
+
+
+class UpdateUserType extends AbstractType
+{
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -34,7 +41,11 @@ class UpdateUserType extends AbstractType
                 'Pharmacist' => 'ROLE_PHARMACIST',
                 'Doctor' => 'ROLE_DOCTOR',
                 'Agent' => 'ROLE_AGENT',
+<<<<<<< HEAD
             
+=======
+                'Sous Admin'=>'ROLE_SOUS_ADMIN',
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
                 'Admin' => 'ROLE_ADMIN',
                 'Super Admin' => 'ROLE_SUPER_ADMIN',
 
@@ -43,6 +54,7 @@ class UpdateUserType extends AbstractType
             'expanded' => false,
             'required' => true,
 
+<<<<<<< HEAD
         ])
         ->add('claims', ChoiceType::class, [
             'choices' => $this->getClaimsChoices(),
@@ -79,6 +91,10 @@ private function getClaimsChoices(): array
         }
 
         return $choices;
+=======
+        ]);
+
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     }
 
     public function configureOptions(OptionsResolver $resolver): void

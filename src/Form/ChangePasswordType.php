@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Form;
+<<<<<<< HEAD
 use Symfony\Component\Validator\Constraints as Assert;
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -15,6 +18,7 @@ class ChangePasswordType extends AbstractType
         $builder
             ->add('currentPassword', PasswordType::class, [
                 'label' => 'Current Password',
+<<<<<<< HEAD
                 'constraints' => [
                     new Assert\NotBlank([
                         'message' => 'Please enter a current password.',
@@ -51,6 +55,17 @@ class ChangePasswordType extends AbstractType
                 ],
             ]);
     }
+=======
+            ])
+            ->add('newPassword', PasswordType::class, [
+                'label' => 'New Password',
+            ])
+            ->add('renewPassword', PasswordType::class, [
+                'label' => 'Re-enter New Password',
+            ]);
+    }
+
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

@@ -38,6 +38,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
     }
+<<<<<<< HEAD
     public function canCreate(User $user, string $entityName): bool
     {
         { if($this->hasClaim($user, 'c', $entityName) || 
@@ -85,6 +86,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
         return in_array($claim, $claims);
     }
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 
 //    /**
 //     * @return User[] Returns an array of User objects

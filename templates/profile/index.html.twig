@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'client/index.html.twig' %}
 
 {% block content %}
@@ -5,6 +6,11 @@
 {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
 <div  style="margin-top: 10%;margin-bottom: 18%;">
 
+=======
+{% extends 'admin/index.html.twig' %}
+
+{% block profile %}
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 {% for label, messages in app.flashes %}
     {% for message in messages %}
         <div class="alert alert-{{ label }} alert-dismissible" role="alert">
@@ -17,11 +23,16 @@
 {% endfor %}
 
 <div class="row">
+<<<<<<< HEAD
   <div class="col-xl-3 text-center">
+=======
+  <div class="col-xl-4">
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 
     <div class="card">
       <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
+<<<<<<< HEAD
       {% if app.user and app.user.imageFileName is null %}
       <img src="{{ asset('frontOffice/img/user.png') }}" style="height: 60%; width: 50%;" alt="Your Image">
   {% elseif app.user %}
@@ -53,6 +64,12 @@
         <h2>{{user.firstName}} {{user.lastName}}</h2>
           {% endif %}
 
+=======
+      <img src="{{ asset('frontOffice/img/user.png') }}" style="height: 60%;width: 50%;" alt="Your Image">
+
+     
+        <h2>{{user.firstName}} {{user.lastName}}</h2>
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
           {% set userRoles = app.user.getRoles() %}
           {% if 'ROLE_SUPER_ADMIN' in userRoles %}
         <h3>Super Admin</h3>
@@ -72,14 +89,28 @@
               <h3>User</h3>
           {% endif %}
       
+<<<<<<< HEAD
       
       
+=======
+         
+        <div class="social-links mt-2">
+          <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        </div>
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
       </div>
     </div>
 
   </div>
 
+<<<<<<< HEAD
   <div class="col-xl-9">
+=======
+  <div class="col-xl-8">
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 
     <div class="card">
       <div class="card-body pt-3">
@@ -105,7 +136,11 @@
             <h5 class="card-title">Profile Details</h5>
             <div class="row">
               <div class="col-lg-3 col-md-4 label">CIN</div>
+<<<<<<< HEAD
               <div class="col-lg-9 col-md-8">{{user.cin}}</div>
+=======
+              <div class="col-lg-9 col-md-8">09642373</div>
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             </div>
             <div class="row">
               <div class="col-lg-3 col-md-4 label">First Name</div>
@@ -169,8 +204,13 @@
     <div class="row mb-3">
         <label for="{{ form.email.vars.id }}" class="col-md-4 col-lg-3 col-form-label">Email</label>
         <div class="col-md-8 col-lg-9">
+<<<<<<< HEAD
         {{ form_widget(form.email, {'attr': {'class': 'form-control', 'readonly': true}}) }}
     </div>
+=======
+            {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     </div>
 
     <div class="row mb-3">
@@ -197,6 +237,7 @@
 
 <!-- End Profile Edit Form -->
 
+<<<<<<< HEAD
 <div class="tab-pane fade pt-3" id="profile-change-password">
 <form method="post" action="{{ path('changePassword') }}">
     {{ form_start(changePwdForm) }}
@@ -231,6 +272,34 @@
     {{ form_end(changePwdForm) }}
 </form>
 </div>
+=======
+          <div class="tab-pane fade pt-3" id="profile-change-password">
+       
+      
+          <form method="post" action="{{ path('changePassword') }}">
+          {{ form_start(changePwdForm) }}
+          <div class="row mb-3">
+              <label for="{{ changePwdForm.currentPassword.vars.id }}" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+              <div class="col-md-8 col-lg-9">
+                  {{ form_widget(changePwdForm.currentPassword, { 'attr': {'class': 'form-control'} }) }}
+              </div>
+          </div>
+      
+          <div class="row mb-3">
+              <label for="{{ changePwdForm.newPassword.vars.id }}" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+              <div class="col-md-8 col-lg-9">
+                  {{ form_widget(changePwdForm.newPassword, { 'attr': {'class': 'form-control'} }) }}
+              </div>
+          </div>
+      
+          <div class="text-center">
+              <button type="submit" class="btn btn-primary">Change Password</button>
+          </div>
+          {{ form_end(changePwdForm) }}
+      </form>
+      
+                </div>
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 
         </div><!-- End Bordered Tabs -->
 
@@ -241,6 +310,7 @@
 </div>
 </section>
 <script>
+<<<<<<< HEAD
   document.addEventListener('DOMContentLoaded', function () {
     console.log('Document is ready');
 
@@ -266,6 +336,8 @@
     });
 });
 
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
   $(document).ready(function () {
       $('#change-password-form').submit(function (event) {
           event.preventDefault();
@@ -289,8 +361,12 @@
           });
       });
   });
+<<<<<<< HEAD
 
 </script>
 <script src="//code.jquery.com/jquery.js"></script>
 </div>
+=======
+</script>
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 {% endblock %}

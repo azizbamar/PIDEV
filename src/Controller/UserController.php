@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+<<<<<<< HEAD
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use App\Service\EmailService;
 use Symfony\Component\Filesystem\Filesystem;
@@ -26,11 +27,23 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+=======
+
+use App\Entity\User;
+use App\Form\UpdateUserType;
+use App\Form\UserType;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/user')]
 class UserController extends AbstractController
 {
+<<<<<<< HEAD
    private DatabaseService $d;
 
    #[Route('/sendSms', name: 'send_sms', methods:'POST')]
@@ -122,10 +135,24 @@ class UserController extends AbstractController
         if (!$userRepository->canCreate($this->getUser(),'user')) {
             return $this->errorUnothorized(); // Fix the spelling here
         }
+=======
+    #[Route('/', name: 'app_user_index', methods: ['GET'])]
+    public function index(UserRepository $userRepository): Response
+    {
+        return $this->render('user/index.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
+<<<<<<< HEAD
         try {
             if ($form->isSubmitted() && $form->isValid()) {
                 if (!$userRepository->canCreate($this->getUser(),'user')) {
@@ -154,6 +181,13 @@ class UserController extends AbstractController
         } catch (\Exception $e) {
             // Log or print the error message for debugging
             $this->addFlash('error', 'An error occurred: ' . $e->getMessage());
+=======
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
         }
 
         return $this->renderForm('user/new.html.twig', [
@@ -161,6 +195,10 @@ class UserController extends AbstractController
             'form' => $form,
         ]);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
@@ -168,6 +206,7 @@ class UserController extends AbstractController
             'user' => $user,
         ]);
     }
+<<<<<<< HEAD
     #[Route('/tables', name: 'app_db_table', methods: ['GET', 'POST'])]
 
     public function listTables(DatabaseService $yourClassService): Response
@@ -216,6 +255,18 @@ class UserController extends AbstractController
             $flashy->success('User updated successfully');
 
             // $this->addFlash('success',"User updated successfully");
+=======
+
+    #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(UpdateUserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -224,6 +275,7 @@ class UserController extends AbstractController
             'form' => $form,
         ]);
     }
+<<<<<<< HEAD
    
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(UserRepository $userRepository,Request $request, User $user, EntityManagerInterface $entityManager): Response
@@ -233,6 +285,13 @@ class UserController extends AbstractController
             if (!$userRepository->canDelete($this->getUser(),'user')) {
                 return $this->errorUnothorized(); // Fix the spelling here
             }
+=======
+
+    #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
+    public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             $entityManager->remove($user);
             $entityManager->flush();
         }

@@ -1,12 +1,16 @@
 <?php
 
 namespace App\Controller;
+<<<<<<< HEAD
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Knp\Component\Pager\PaginatorInterface;
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 
 use App\Entity\Reclamation;
 use App\Form\ReclamationType;
 use App\Repository\ReclamationRepository;
+<<<<<<< HEAD
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use MercurySeries\FlashyBundle\FlashyNotifier;
@@ -14,6 +18,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+=======
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
@@ -21,6 +31,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 class ReclamationController extends AbstractController
 {
     #[Route('/', name: 'app_reclamation_index', methods: ['GET'])]
+<<<<<<< HEAD
     public function index(SessionInterface $session,PaginatorInterface $paginator, Request $request,ReclamationRepository $reclamationRepository,UserRepository $userRepository): Response
 {
     if ($request->getSession()->get('2fa_authenticated')) {
@@ -43,6 +54,10 @@ class ReclamationController extends AbstractController
         'canDelete' => $userRepository->canDelete($user, 'reclamation'),
         'canCreate' => $userRepository->canCreate($user, 'reclamation'),
     ];
+=======
+    public function index(ReclamationRepository $reclamationRepository): Response
+{
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     $reclamations = $reclamationRepository->findAll();
     $reclamationsWithUserCin = [];
 
@@ -54,6 +69,7 @@ class ReclamationController extends AbstractController
             'userCin' => $userCin,
         ];
     }
+<<<<<<< HEAD
     $pagination = $paginator->paginate(
         $reclamationsWithUserCin,
         $request->query->getInt('page', 1), // Get the page number from the request
@@ -70,6 +86,15 @@ class ReclamationController extends AbstractController
 
     #[Route('/new', name: 'app_reclamation_new', methods: ['GET', 'POST'])]
     public function new(FlashyNotifier $flashy,Request $request, EntityManagerInterface $entityManager): Response
+=======
+
+    return $this->render('reclamation/index.html.twig', [
+        'reclamationsWithUserCin' => $reclamationsWithUserCin,
+    ]);
+}
+    #[Route('/new', name: 'app_reclamation_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     {
         $reclamation = new Reclamation();
         $reclamation->setDateReclamation(new \DateTime());
@@ -88,7 +113,11 @@ class ReclamationController extends AbstractController
                 $reclamation->setUser($user);
                 $entityManager->persist($reclamation);
                 $entityManager->flush();
+<<<<<<< HEAD
                 $flashy->success('success','reclamation added successfully');
+=======
+    
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
                 return $this->redirectToRoute('app_reclamation_show', [], Response::HTTP_SEE_OTHER);
             }
         }
@@ -98,6 +127,7 @@ class ReclamationController extends AbstractController
             'form' => $form,
         ]);
     }
+<<<<<<< HEAD
 public function containsBadWords(string $text): bool
 {
     $api_key = 'YOUR_WEBPURIFY_API_KEY';
@@ -131,6 +161,14 @@ public function containsBadWords(string $text): bool
         // Get the currently logged-in user
         $user = $this->getUser();
         
+=======
+
+    #[Route('/userReclamation', name: 'app_reclamation_show')]
+    public function show(EntityManagerInterface $entityManager): Response
+    {
+        // Get the currently logged-in user
+        $user = $this->getUser();
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
         if ($user instanceof \App\Entity\User) {
             $reclamations = $entityManager->createQueryBuilder()
             ->select('r.id', 'r.title', 'r.description','r.dateReclamation') // Include only the necessary fields
@@ -142,6 +180,7 @@ public function containsBadWords(string $text): bool
 
         }
         // Assuming there's a property or method in the User entity that represents the reclamations
+<<<<<<< HEAD
         $pagination = $paginator->paginate(
             $reclamations,
             $request->query->getInt('page', 1), // Get the page number from the request
@@ -149,12 +188,18 @@ public function containsBadWords(string $text): bool
         );
         return $this->render('reclamation/show.html.twig', [
             'reclamations' => $pagination,
+=======
+    
+        return $this->render('reclamation/show.html.twig', [
+            'reclamations' => $reclamations,
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
         ]);
     }
     
     #[Route('/{id}', name: 'reclamation', methods: ['GET'])]
     public function getUserReclamation(Reclamation $reclamation): Response
     {
+<<<<<<< HEAD
         // Get the currently logged-in user
         $user = $this->getUser();
     
@@ -164,10 +209,16 @@ public function containsBadWords(string $text): bool
             throw new AccessDeniedException('Access denied: This reclamation does not belong to the current user.');
         }
     
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
         return $this->render('reclamation/showreclamation.html.twig', [
             'reclamation' => $reclamation,
         ]);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     #[Route('/{id}/edit', name: 'app_reclamation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reclamation $reclamation, EntityManagerInterface $entityManager): Response
     {
@@ -185,6 +236,7 @@ public function containsBadWords(string $text): bool
             'form' => $form,
         ]);
     }
+<<<<<<< HEAD
     public function errorUnothorized()
     {
         return $this->render('errors/unothorized.html.twig', [
@@ -198,10 +250,21 @@ public function containsBadWords(string $text): bool
             // if (!$userRepository->canDelete($this->getUser(),'reclamation')) {
             //     return $this->errorUnothorized(); // Fix the spelling here
             // }
+=======
+
+    #[Route('/{id}', name: 'app_reclamation_delete', methods: ['POST'])]
+    public function delete(Request $request, Reclamation $reclamation, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$reclamation->getId(), $request->request->get('_token'))) {
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             $entityManager->remove($reclamation);
             $entityManager->flush();
         }
 
+<<<<<<< HEAD
         return $this->redirectToRoute('app_reclamation_show', [], Response::HTTP_SEE_OTHER);
+=======
+        return $this->redirectToRoute('app_reclamation_index', [], Response::HTTP_SEE_OTHER);
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     }
 }

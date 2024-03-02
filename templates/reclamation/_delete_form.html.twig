@@ -1,6 +1,12 @@
 <form method="post" action="{{ path('app_reclamation_delete', {'id': reclamation.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reclamation.id) }}">
+<<<<<<< HEAD
     <button class="btn btn-danger btn-sm mr-4" onclick="deleteItem()">
 Delete
     </button>
+=======
+    <button class="btn btn-danger" onclick="deleteItem()">
+<i class="bi bi-trash"></i> 
+</button>
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 </form>

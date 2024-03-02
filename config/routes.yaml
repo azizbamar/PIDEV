@@ -29,19 +29,25 @@ changePassword:
     path: /changePassword
     controller: 'App\Controller\ProfileController::changePassword'
     methods: ['GET', 'POST']
+<<<<<<< HEAD
 forgot_password:
     path: /forgetPassword
     controller: 'App\Controller\ProfileController::changePassword'
     methods: ['GET', 'POST']
 
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 profile:
     path: /profile
     controller: 'App\Controller\ProfileController::profile'
     methods: ['GET']
+<<<<<<< HEAD
 admin_profile:
     path: /adminprofile
     controller: 'App\Controller\ProfileController::adminprofile'
     methods: ['GET']
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 
 # app_user_delete:
 #     path: /delete
@@ -55,6 +61,7 @@ admin_profile:
 admincreateuser:
     path: /admincreateuser
     controller: App\Controller\UserController::adminCreateUser
+<<<<<<< HEAD
 sendSms:
     path: /sendSms
     controller: App\Controller\UserController::sendSms
@@ -65,3 +72,5 @@ two_factor_authentication:
     path: /two-factor-authentication
     controller: App\Controller\TwoFactorAuthentificationController::index
     methods: ['GET', 'POST']
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016

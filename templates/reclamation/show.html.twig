@@ -6,6 +6,7 @@
     <div class="d-flex align-items-center justify-content-center">
         <div class="col-md-12">
             <h1 class="mb-4">Personal Reclamations</h1>
+<<<<<<< HEAD
             {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
 
             {% for label, messages in app.flashes %}
@@ -32,6 +33,9 @@
         </div>
     </div>
     <br>
+=======
+
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             <table class="table table-bordered table-hover" style="border-radius: 105px;">
                 <thead class="table-secondary">
                     <tr>
@@ -42,6 +46,7 @@
                 </thead>
                 <tbody>
                     {% for reclamation in reclamations %}
+<<<<<<< HEAD
                         <tr class="reclamation-row">
                             <td>{{ reclamation.title }}</td>
                             <td>{{ reclamation.dateReclamation|date('Y-m-d H:i:s') }}</td><td class="text-center">
@@ -51,6 +56,15 @@
                                     </a>
                             {{ include('reclamation/_delete_form.html.twig') }}
 
+=======
+                        <tr>
+                            <td>{{ reclamation.title }}</td>
+                            <td>{{ reclamation.dateReclamation|date('Y-m-d H:i:s') }}</td><td class="text-center">
+                                <div class="btn-group" role="group">
+                                    <a href="{{ path('reclamation', {'id': reclamation.id}) }}" class="btn btn-primary text-white">
+                                        Details
+                                    </a>
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
                                     {# Add other action buttons if needed #}
                                 </div>
                             </td>
@@ -61,6 +75,7 @@
                             <td colspan="3" class="text-center">No records found</td>
                         </tr>
                     {% endfor %}
+<<<<<<< HEAD
                     <tr id="noReclamationsRow" style="display: none;">
                 <td colspan="7" class="text-center">No Reclamations found</td>
             </tr>
@@ -71,6 +86,10 @@
                 {{ knp_pagination_render(reclamations) }}
             </ul>
         </nav>
+=======
+                </tbody>
+            </table>
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             <div >
         <a href="{{ path('app_reclamation_new') }}" class="btn btn-primary">Add reclamation</a>
     </div>
@@ -78,6 +97,7 @@
             {# Remove the "Create New" button if you want #}
         </div>
     </div>
+<<<<<<< HEAD
     <script>
         $(document).ready(function () {
             $('#searchButton').click(function () {
@@ -99,4 +119,6 @@
         
 
     </script>
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 {% endblock %}

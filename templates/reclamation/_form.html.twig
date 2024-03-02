@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 {# reclamation/new.html.twig #}
 {% extends 'profile/dashboard.html.twig' %}
+=======
+{% extends 'admin/index.html.twig' %}
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 
 {% block profile %}
     <div class="d-flex align-items-center justify-content-center">
@@ -8,11 +12,19 @@
                 {% if action == 'update' %}
                     Update Reclamation
                 {% else %}
+<<<<<<< HEAD
                     Créer une reclamation
                 {% endif %}
             </div>
 
             {{ form_start(form, {'attr': {'novalidate': 'novalidate','id':'reclamation_form'}}) }}
+=======
+                    Create New Reclamation
+                {% endif %}
+            </div>
+
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 
             <table class="table" style="margin-top: 3%;">
                 <tbody>
@@ -22,7 +34,11 @@
                             {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
                             {% if form_errors(form.title) %}
                                 <div class="text-danger error-title">
+<<<<<<< HEAD
                                     {{ form.title.vars.errors|first.message }}   
+=======
+                                {{ form.title.vars.errors|first.message }}   
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
                                 </div>
                             {% endif %}
                         </td>
@@ -33,7 +49,11 @@
                             {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': 9}}) }}
                             {% if form_errors(form.description) %}
                                 <div class="text-danger error-description">
+<<<<<<< HEAD
                                     {{ form.description.vars.errors|first.message }}   
+=======
+                                {{ form.description.vars.errors|first.message }}   
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
                                 </div>
                             {% endif %}
                         </td>
@@ -41,11 +61,16 @@
                 </tbody>
             </table>
 
+<<<<<<< HEAD
             <button id="submitBtn" type="submit" class="btn btn-primary">
+=======
+            <button class="btn btn-primary">
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
                 {{ button_label|default('Save') }}
             </button>
 
             {{ form_end(form) }}
+<<<<<<< HEAD
 
             <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
             <script>
@@ -96,6 +121,29 @@
                                 }
                             })
                             .catch(error => alert('error', error));
+=======
+            <script>
+                // Plain JavaScript code to hide error messages when typing starts
+                document.addEventListener('DOMContentLoaded', function () {
+                    var inputFields = document.querySelectorAll('input, textarea, select');
+
+                    inputFields.forEach(function (input) {
+                        input.addEventListener('input', function () {
+                            var fieldName = this.getAttribute('name');
+
+                            // Adjust the code to handle nested field names
+                            var nestedFieldNameMatch = fieldName.match(/\[([^\]]+)\]/);
+                            if (nestedFieldNameMatch) {
+                                fieldName = nestedFieldNameMatch[1];
+                            }
+
+                            var errorElement = document.querySelector('.error-' + fieldName);
+
+                            if (errorElement) {
+                                errorElement.style.display = 'none';
+                            }
+                        });
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
                     });
                 });
             </script>

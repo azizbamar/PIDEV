@@ -25,12 +25,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\NotBlank(message: 'Email cannot be blank.')]
+<<<<<<< HEAD
     #[Assert\Email(message: 'Invalid email address.')]
 
     private ?string $email = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'roles cannot be blank.')]
+=======
+    private ?string $email = null;
+
+    #[ORM\Column]
+    #[Assert\NotBlank(message: 'First name cannot be blank.')]
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 
     private array $roles = [];
 
@@ -69,10 +76,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         minMessage: 'CIN must be at least {{ limit }} characters long.',
         maxMessage: 'CIN cannot be longer than {{ limit }} characters.'
     )]
+<<<<<<< HEAD
         private ?string $cin = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Address cannot be null.')]
+=======
+    private ?string $cin = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Address cannot be blank.')]
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     #[Assert\Length(
         min: 5,
         max: 255,
@@ -80,6 +94,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         maxMessage: 'Address cannot be longer than {{ limit }} characters.'
     )]
     private ?string $address = null;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     #[ORM\Column(length: 20)]
     #[Assert\NotBlank(message: 'Phone number cannot be blank.')]
     #[Assert\Length(
@@ -90,6 +109,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     private ?string $phoneNumber = null;
 
+<<<<<<< HEAD
     #[ORM\OneToMany(targetEntity: Reclamation::class, mappedBy: 'user', cascade: ['remove'])]
     private Collection $reclamations;
 
@@ -98,11 +118,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageFileName = null;
+=======
+    #[ORM\OneToMany(targetEntity: Reclamation::class, mappedBy: 'user_id')]
+    private Collection $reclamations;
+
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     public function __construct()
     {
         $this->reclamations = new ArrayCollection();
         $this->roles = ['ROLE_USER']; // Set default role
+<<<<<<< HEAD
     }
+=======
+
+    }
+
+    
+
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     public function getId(): ?int
     {
         return $this->id;
@@ -286,6 +319,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+<<<<<<< HEAD
     public function getClaims(): ?array
     {
         return $this->claims;
@@ -309,6 +343,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 
 
    

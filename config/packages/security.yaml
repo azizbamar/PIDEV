@@ -18,8 +18,11 @@ security:
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\AppCustomAuthenticator
+<<<<<<< HEAD
             access_denied_handler: App\Security\AccessDeniedHandler
 
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             logout:
                 path: app_logout
                 # where to redirect after logout
@@ -42,6 +45,7 @@ security:
     access_control:
         # - { path: ^/admin/utilisateurs, roles: ROLE_ADMIN }
         # - { path: ^/admin, roles: ROLE_PRODUCT_ADMIN }
+<<<<<<< HEAD
         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/user, roles: ROLE_ADMIN}
         - { path: ^/reclamation/userReclamation, roles: ROLE_USER}
@@ -57,6 +61,14 @@ security:
         ROLE_CIENT: ROLE_USER
         # ROLE_SOUS_ADMIN: ROLE_CLIENT
         ROLE_ADMIN: ROLE_CLIENT
+=======
+        # - { path: ^/client, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_CIENT: ROLE_USER
+        ROLE_SOUS_ADMIN: ROLE_CLIENT
+        ROLE_ADMIN: ROLE_SOUS_ADMIN
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
 when@test:

@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\User;
+<<<<<<< HEAD
 use App\Service\EmailService;
 
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 use App\Form\RegistrationFormType;
 use App\Security\AppCustomAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,12 +22,17 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
+<<<<<<< HEAD
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppCustomAuthenticator $authenticator, EntityManagerInterface $entityManager,EmailService $emailService): Response
+=======
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppCustomAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class,$user);
         $form->handleRequest($request);
         
+<<<<<<< HEAD
         if ($form->isSubmitted() && !$form->isValid()) {
            
               
@@ -33,6 +41,9 @@ class RegistrationController extends AbstractController
             
         }
       
+=======
+        
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(

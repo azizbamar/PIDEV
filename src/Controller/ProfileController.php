@@ -1,14 +1,21 @@
 <?php
 
 namespace App\Controller;
+<<<<<<< HEAD
 use Symfony\Component\Validator\Exception\ValidatorException;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\Security;
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 use App\Form\UpdateUserType;
 use App\Form\EditProfileType;
 use App\Repository\UserRepository;
@@ -17,6 +24,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Form\ChangePasswordType;
+<<<<<<< HEAD
 use App\Form\ProfilePictureType;
 use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -34,11 +42,19 @@ public FlashyNotifier $flashy;
     {
         $editPictureform = $this->createForm(ProfilePictureType::class);
 
+=======
+
+class ProfileController extends AbstractController
+{
+    public function changePassword(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
         $user = $this->getUser();
         $changePwdForm = $this->createForm(ChangePasswordType::class);
 
 
         $changePwdForm->handleRequest($request);
+<<<<<<< HEAD
             if ($changePwdForm->isSubmitted() && !$changePwdForm->isValid()) {
             foreach ($changePwdForm->getErrors(true) as $error) {
                 $this->addFlash('danger', $error->getMessage());
@@ -52,11 +68,21 @@ public FlashyNotifier $flashy;
                 $this->addFlash('danger', 'The passwords do not match.');
                 return $this->redirectToRoute('profile');
             }
+=======
+
+        if ($changePwdForm->isSubmitted() && $changePwdForm->isValid()) {
+            $data = $changePwdForm->getData();
+
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             // Check if the current password is correct
             if (!$passwordEncoder->isPasswordValid($user, $data['currentPassword'])) {
          
                 $this->addFlash('danger', 'Incorrect current password.');
+<<<<<<< HEAD
                 return $this->redirectToRoute('profile');
+=======
+                return $this->redirectToRoute('users-profile');
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             }
 
             // Set the new password
@@ -71,6 +97,7 @@ public FlashyNotifier $flashy;
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+<<<<<<< HEAD
             $flashy->success('Password updated successfully');
 
             //  $this->addFlash('success', 'Password updated successfully.');
@@ -81,10 +108,21 @@ public FlashyNotifier $flashy;
 
         return $this->render('profile/index.html.twig', [
             'editPictureform'=>$editPictureform->createView(),
+=======
+
+             $this->addFlash('success', 'Password updated successfully.');
+
+             return $this->redirectToRoute('users-profile'); // Redirect to the profile page or any other page you prefer
+        }
+        $form = $this->createForm(EditProfileType::class, $this->getUser());
+
+        return $this->render('user/users-profile.html.twig', [
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             'changePwdForm' => $changePwdForm->createView(),
             'user' => $this->getUser(),
             'form' => $form->createView(),
         ]);
+<<<<<<< HEAD
     }
    public function abc(){
     
@@ -99,6 +137,17 @@ public FlashyNotifier $flashy;
         return $this->render('profile/index.html.twig', [
             'editPictureform'=>$editPictureform->createView(),
 
+=======
+        // return $this->json(["user"=>$user]);
+    }
+    // #[Route('/profile', name: 'app_profile')]
+    public function usersProfile(): Response
+    {
+        $changePwdForm = $this->createForm(ChangePasswordType::class);
+
+        $form = $this->createForm(EditProfileType::class, $this->getUser());
+        return $this->render('user/users-profile.html.twig', [
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             'controller_name' => 'ProfileController',
             'form'=>$form->createView(),
             'action'=>'false',
@@ -107,6 +156,7 @@ public FlashyNotifier $flashy;
 
         ]);
     }
+<<<<<<< HEAD
     public function editprofile(FlashyNotifier $flashy,Request $request, EntityManagerInterface $entityManager): Response
 {
     $editPictureform = $this->createForm(ProfilePictureType::class);
@@ -226,10 +276,44 @@ public function profile(Request $request ,Security $security,SessionInterface $s
     }
     $editPictureform = $this->createForm(ProfilePictureType::class);
 
+=======
+    public function editprofile(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(EditProfileType::class, $this->getUser());
+        $form->handleRequest($request);
+        if ($this->getUser() instanceof \App\Entity\User) {
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'User updated successfully.');
+
+            return $this->redirectToRoute('users-profile', [], Response::HTTP_SEE_OTHER);
+        }
+        
+        $changePwdForm = $this->createForm(ChangePasswordType::class);
+
+
+
+        return $this->render('user/users-profile.html.twig', [
+            'form'=>$form->createView(),
+            'action'=>'false',
+            'user'=>$this->getUser(),
+            'changePwdForm'=>$changePwdForm->createView()
+            
+        ]);
+    
+
+}
+else {
+    $this->addFlash('error', 'Error has been Occured');
+}
+}
+public function profile(){
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     $changePwdForm = $this->createForm(ChangePasswordType::class);
     $form = $this->createForm(EditProfileType::class, $this->getUser());
 
     return $this->render('profile/index.html.twig', [
+<<<<<<< HEAD
         'editPictureform'=>$editPictureform->createView(),
 
         'form'=>$form->createView(),
@@ -258,6 +342,8 @@ public function adminprofile(SessionInterface $session,Request $request){
     return $this->render('profile/index2.html.twig', [
         'editPictureform'=>$editPictureform->createView(),
 
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
         'form'=>$form->createView(),
         'action'=>'false',
         'user'=>$this->getUser(),

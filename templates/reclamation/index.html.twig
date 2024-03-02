@@ -6,6 +6,7 @@
     <div class="d-flex" >
         <div class="col-md-12">
             <h1 class="mb-4">Liste des Reclamations</h1>
+<<<<<<< HEAD
             {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
 
 
@@ -23,6 +24,9 @@
     </div>
 </div>
 <br>
+=======
+
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             <table class="table table-bordered table-hover" >
                 <thead class="table-secondary">
                     <tr>
@@ -32,11 +36,19 @@
                         <th>ACTIONS</th>
                     </tr>
                 </thead>
+<<<<<<< HEAD
                 <tbody id="userTableBody">
                     {% for item in reclamationsWithUserCin %}
                         {% set reclamation = item.reclamation %}
                         {% set userCin = item.userCin %}
                         <tr class="reclamation-row">
+=======
+                <tbody>
+                    {% for item in reclamationsWithUserCin %}
+                        {% set reclamation = item.reclamation %}
+                        {% set userCin = item.userCin %}
+                        <tr >
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
                             <td>{{ userCin }}</td>
                             <td>{{ reclamation.title }}</td>
                             <td>{{ reclamation.dateReclamation|date('Y-m-d H:i:s') }}</td>
@@ -46,6 +58,7 @@
                                         <i class="bi bi-eye"></i>
                                     </a> #}
                                <button class="btn">
+<<<<<<< HEAD
                                {% if permissions.canRead %}
                                <a href="{{ path('reclamation', {'id': reclamation.id}) }}" class="btn btn-primary btn-sm mr-4" style="margin-right: 4%;">
                                Details</a>
@@ -62,6 +75,11 @@
                         {% if not permissions.canDelete and not permissions.canUpdate %}
                     <p class="text-danger">No action authorized</p>
                         {% endif %}
+=======
+                               <a href="{{ path('reclamation', {'id': reclamation.id}) }}" class="btn btn-primary btn-sm mr-4" style="margin-right: 4%;">
+                               Details</a>
+                            </button>
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
                             </a>
                                     {# {{ include('reclamation/_delete_form.html.twig') }} #}
                                 </div>
@@ -72,6 +90,7 @@
                             <td colspan="3" class="text-center">No reclamations found</td>
                         </tr>
                     {% endfor %}
+<<<<<<< HEAD
                     <tr id="noReclamationsRow" style="display: none;">
                 <td colspan="7" class="text-center">No Reclamations found</td>
             </tr>
@@ -82,10 +101,16 @@
                 {{ knp_pagination_render(reclamationsWithUserCin) }}
              </ul>
         </nav>
+=======
+                </tbody>
+            </table>
+
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             {# <a href="{{ path('app_reclamation_new') }}" class="btn btn-success">Create New</a> #}
         </div>
     </div>
     <script>
+<<<<<<< HEAD
         $(document).ready(function () {
             $('#searchButton').click(function () {
                 var searchQuery = $('#example-search-input').val().toLowerCase();
@@ -105,6 +130,8 @@
         });
         
 
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
         // Your delete function remains unchanged
         function deleteReclamation(reclamationId, csrfToken) {
             // ...

@@ -2,22 +2,29 @@
 
 namespace App\Form;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+<<<<<<< HEAD
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use App\Controller\UserController;
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 use Symfony\Component\Validator\Constraints\Length;
 use App\Entity\User;
+<<<<<<< HEAD
 use App\Service\DatabaseService;
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractType
 {
+<<<<<<< HEAD
     private DatabaseService $databaseService;
     private UserController $userController;
 
@@ -26,6 +33,8 @@ class UserType extends AbstractType
         $this->databaseService = $databaseService;
         $this->userController = $userController;
     }
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -42,6 +51,7 @@ class UserType extends AbstractType
                     'Pharmacist' => 'ROLE_PHARMACIST',
                     'Doctor' => 'ROLE_DOCTOR',
                     'Agent' => 'ROLE_AGENT',
+<<<<<<< HEAD
                     'Admin' => 'ROLE_ADMIN',
                     'Super Admin' => 'ROLE_SUPER_ADMIN',
                 ],
@@ -85,6 +95,35 @@ class UserType extends AbstractType
 
         return $choices;
     }
+=======
+                    'Sous Admin'=>'ROLE_SOUS_ADMIN',
+                    'Admin' => 'ROLE_ADMIN',
+                    'Super Admin' => 'ROLE_SUPER_ADMIN',
+    
+                ],
+                'multiple' => true,
+                'expanded' => false,
+                // 'required' => true,
+            ])
+            ->add('password', PasswordType::class, [
+              
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a password',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'max' => 4096,
+                    ]),
+                ],
+            ])
+
+    
+        ;
+    }
+
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

@@ -26,7 +26,10 @@ class Reclamation
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'reclamations')]
+<<<<<<< HEAD
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
     private ?User $user = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]

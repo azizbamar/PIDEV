@@ -22,6 +22,22 @@ class AdminCreateUserType extends AbstractType
     {
         $builder
             ->add('email')
+<<<<<<< HEAD
+=======
+            ->add('password', PasswordType::class, [
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a password',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'max' => 4096,
+                    ]),
+                ],
+            ])  // Note: Handle password encoding appropriately
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             ->add('firstName')
             ->add('lastName')
             ->add('cin')
@@ -36,12 +52,20 @@ class AdminCreateUserType extends AbstractType
                 'Pharmacist' => 'ROLE_PHARMACIST',
                 'Doctor' => 'ROLE_DOCTOR',
                 'Agent' => 'ROLE_AGENT',
+<<<<<<< HEAD
                 
+=======
+                'Sous Admin'=>'ROLE_SOUS_ADMIN',
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
                 'Admin' => 'ROLE_ADMIN',
                 'Super Admin' => 'ROLE_SUPER_ADMIN',
 
             ],
+<<<<<<< HEAD
             'multiple' => false,
+=======
+            'multiple' => true,
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             'expanded' => false,
             'required' => true,
         ]);

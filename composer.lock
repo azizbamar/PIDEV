@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "31db34917cf03b3fecc2444d51a03122",
     "packages": [
         {
@@ -62,6 +63,11 @@
             "time": "2023-01-15T23:15:59+00:00"
         },
         {
+=======
+    "content-hash": "5ca0fe5360d8c042e29650a91f0ea9ff",
+    "packages": [
+        {
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             "name": "doctrine/annotations",
             "version": "2.0.1",
             "source": {
@@ -2248,6 +2254,7 @@
             "time": "2021-07-14T16:41:46+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "ramsey/collection",
             "version": "2.0.0",
             "source": {
@@ -2429,6 +2436,8 @@
             "time": "2023-11-08T05:53:05+00:00"
         },
         {
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
             "name": "sensio/framework-extra-bundle",
             "version": "v6.2.10",
             "source": {
@@ -7719,6 +7728,7 @@
             "time": "2024-01-23T13:51:25+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "symfony/twig-pack",
             "version": "v1.0.1",
             "source": {
@@ -7841,6 +7851,17 @@
             },
             "dist": {
                 "type": "zip",
+=======
+            "name": "symfony/ux-turbo",
+            "version": "v2.14.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/ux-turbo.git",
+                "reference": "7cd466f33950aa82a2b7e1485d62d8da726a0051"
+            },
+            "dist": {
+                "type": "zip",
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
                 "url": "https://api.github.com/repos/symfony/ux-turbo/zipball/7cd466f33950aa82a2b7e1485d62d8da726a0051",
                 "reference": "7cd466f33950aa82a2b7e1485d62d8da726a0051",
                 "shasum": ""

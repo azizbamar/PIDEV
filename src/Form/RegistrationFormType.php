@@ -12,7 +12,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+<<<<<<< HEAD
 use VictorPrdh\RecaptchaBundle\Form\ReCaptchaType;
+=======
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
 
 class RegistrationFormType extends AbstractType
 {
@@ -49,9 +52,13 @@ class RegistrationFormType extends AbstractType
         ->add('email')
         ->add('address')
         ->add('phoneNumber')
+<<<<<<< HEAD
         ->add('email')
         ->add('captcha',ReCaptchaType::class)
 
+=======
+            ->add('email')
+>>>>>>> 6420834e7355e2da80ba35953ed94643a74ec016
      
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
