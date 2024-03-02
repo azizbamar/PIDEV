@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controller;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 use App\Entity\Question;
 use App\Form\QuestionType;
@@ -35,7 +37,7 @@ class QuestionController extends AbstractController
     }
 
     #[Route('/new', name: 'app_question_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager,FlashyNotifier $flashy): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,FlashyNotifier $flashy,MailerInterface $mailer): Response
     {
         $question = new Question();
         $form = $this->createForm(QuestionType::class, $question);
@@ -44,6 +46,14 @@ class QuestionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($question);
             $entityManager->flush();
+            $email = (new Email())
+            ->from('oussemaa782@gmail.com')
+            ->to('azizbamar16@gmail.com')
+            ->subject("siuuuuuuuuuuu")
+            ->text("waaaaaaaaaaa")
+            ->html('<p>See Twig integration for better HTML integration!</p>');
+
+        $mailer->send($email);
             $flashy->success('Question created !');
 
 
@@ -97,4 +107,6 @@ class QuestionController extends AbstractController
 
         return $this->redirectToRoute('app_question_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }

@@ -14,6 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 #[Route('/quote')]
 class QuoteController extends AbstractController
@@ -128,8 +130,9 @@ class QuoteController extends AbstractController
 
     
     #[Route('/print/{id}', name: 'app_quote_print')]
-    public function print($id,QuoteRepository $quoteRepository):void
+    public function print($id,QuoteRepository $quoteRepository,QuestionRepository $questionRepository):void
     {
+
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont','Arial');
         $pdfOptions->setIsRemoteEnabled(true);
@@ -137,10 +140,13 @@ class QuoteController extends AbstractController
         $dompdf = new Dompdf($pdfOptions);
         $date = date("Y/m/d");
         $quote = $quoteRepository->find($id);
+        $questions = $questionRepository->findByType($quote->getType());
+
         $html = $this->renderView('quote/print.html.twig',[
             'id' => $id,
             'date' => $date,
-            'quote' => $quote
+            'quote' => $quote,
+            'questions'=>$questions,
         ]);
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4','portrait');
@@ -150,6 +156,40 @@ class QuoteController extends AbstractController
         $dompdf->stream('devis.pdf',["Attachment" => true]);    
 
      
+    }
+
+    #[Route('/mail/{id}', name: 'app_quote_mail', methods: ['GET'])]
+    public function sendEmail($id,MailerInterface $mailer,QuoteRepository $quoteRepository,QuestionRepository $questionRepository): Response
+    {
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont','Arial');
+        $pdfOptions->setIsRemoteEnabled(true);
+        $pdfOptions->set('isHtml5ParserEnabled',true);
+        $dompdf = new Dompdf($pdfOptions);
+        $date = date("Y/m/d");
+        $quote = $quoteRepository->find($id);
+        $questions = $questionRepository->findByType($quote->getType());
+        $html = $this->renderView('quote/print.html.twig',[
+            'id' => $id,
+            'date' => $date,
+            'quote' => $quote,
+            'questions'=>$questions,
+        ]);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4','portrait');
+        $dompdf->render();
+
+
+        $email = (new Email())
+            ->from('oussemaa782@gmail.com')
+            ->to('azizbamar16@gmail.com')
+            ->subject("aaaaa")
+            ->text("aaaaa")
+            ->attach($dompdf->output(),"devis")
+            ->html('<p>See Twig integration for better HTML integration!</p>');
+
+        $mailer->send($email);
+        return new Response("Email sent!");
     }
 
 

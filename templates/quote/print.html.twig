@@ -21,7 +21,7 @@
     <div>
         <div class="header">
             <div class="assurance-name">
-                Assurance XYZ
+                Assurance Protechtini
             </div>
             <div class="date">
                 Date: {{date}}
@@ -37,11 +37,16 @@
         <br>
         <div class="details">
             <h2>Détails du devis :</h2>
-            {% for service in quote.services %}
+            {% for index,service in quote.services %}
+            <h4>{{questions[index].question}}</h4>
             <p>{{service}}</p>
             {% endfor %}
 
         </div>
+    </div>
+
+    
+            <h3>Total: {{ quote.amount }}</h3>
     </div>
 </body>
 </html>
