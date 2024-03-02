@@ -50,15 +50,8 @@
                         {% endif %}
                     </div>
 
-                    <div class="col-12">
-                        <label for="statusSinister" class="form-label">Status Sinister</label>
-                        {{ form_widget(form.statusSinister, {'attr': {'class': 'form-control', 'id': 'statusSinister'}}) }}
-                        {% if form_errors(form.statusSinister) %}
-                            <div class="alert alert-danger">
-                                {{ form_errors(form.statusSinister) }}
-                            </div>
-                        {% endif %}
-                    </div>
+
+
                     <div class="col-12">
                         <label for="description" class="form-label">Description</label>
                         {{ form_widget(form.description, {'attr': {'class': 'form-control', 'id': 'description'}}) }}

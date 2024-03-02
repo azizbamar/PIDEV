@@ -1,46 +1,45 @@
 {% extends 'base2.html.twig' %}
 
-{% block title %}Prescription{% endblock %}
+{% block title %}Prescriptions{% endblock %}
 
 {% block body %}
-    <h1>Prescription</h1>
+    <h1>Prescriptions</h1>
 
     <table class="table">
-        <tbody>
+        <thead>
         <tr>
-            <th>Id</th>
-            <td>{{ prescription.id }}</td>
-        </tr>
-        <tr>
-            <th>Date Prescription</th>
-            <td>{{ prescription.datePrescription ? prescription.datePrescription|date('Y-m-d') : '' }}</td>
-        </tr>
-        <tr>
+
+            <th>Date of Prescription</th>
             <th>Medications</th>
-            <td>{{ prescription.medications }}</td>
-        </tr>
-        <tr>
-            <th>Status Prescription</th>
-            <td>{{ prescription.statusPrescription }}</td>
-        </tr>
-        <tr>
+            <th>Status</th>
             <th>Additional Notes</th>
-            <td>{{ prescription.additionalNotes }}</td>
-        </tr>
-        <tr>
             <th>Validity Duration</th>
-            <td>{{ prescription.validityDuration }}</td>
-        </tr>
-        <tr>
             <th>Client Name</th>
-            <td>{{prescription.userCIN }}</td>
+            <th>Actions</th>
         </tr>
+        </thead>
+        <tbody>
+        {% for prescription in prescriptions %}
+            <tr>
+
+                <td>{{ prescription.datePrescription ? prescription.datePrescription|date('Y-m-d') : 'N/A' }}</td>
+                <td>{{ prescription.medications }}</td>
+                <td>{{ prescription.statusPrescription }}</td>
+                <td>{{ prescription.additionalNotes }}</td>
+                <td>{{ prescription.validityDuration }}</td>
+                <td>{{ prescription.userCIN }}</td>
+                <td>
+                    <a href="{{ path('app_prescription_show_dashboard', {'id': prescription.id}) }}">view</a>
+                    <a href="{{ path('app_prescription_edit_dashboard', {'id': prescription.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No prescriptions found</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_prescription_index') }}">back to list</a>
-
-    <a href="{{ path('app_prescription_edit', {'id': prescription.id}) }}">edit</a>
-
-    {{ include('prescription/_delete_form.html.twig') }}
+    <a href="{{ path('app_admin') }}">Retour au tableau de bord administrateur</a>
 {% endblock %}

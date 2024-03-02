@@ -25,7 +25,8 @@ class Sinister
     private ?\DateTimeInterface $dateSinister = null;
     public function __construct()
     {
-    $this->dateSinister = new \DateTime();
+        $this->dateSinister = new \DateTime();
+        $this->statusSinister = 'ongoing';
     }
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Please enter the location.')]

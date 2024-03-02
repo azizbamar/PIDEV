@@ -10,6 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Dompdf\Dompdf;
+use App\Service\DrugService;
+
 
 #[Route('/prescription')]
 class PrescriptionController extends AbstractController
@@ -71,11 +74,58 @@ class PrescriptionController extends AbstractController
     #[Route('/{id}', name: 'app_prescription_delete', methods: ['POST'])]
     public function delete(Request $request, Prescription $prescription, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$prescription->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $prescription->getId(), $request->request->get('_token'))) {
             $entityManager->remove($prescription);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('app_prescription_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/prescription/{id}/export-pdf', name: 'prescription_export_pdf')]
+    public function exportToPdfAction(Prescription $prescription)
+    {
+        $data = [
+            'datePrescription' => $prescription->getDatePrescription()->format('Y-m-d'),
+            'medications' => $prescription->getMedications(),
+            'statusPrescription' => $prescription->getStatusPrescription(),
+            'additionalNotes' => $prescription->getAdditionalNotes(),
+            'validityDuration' => $prescription->getValidityDuration(),
+            'userCIN' => $prescription->getUserCIN(),
+        ];
+
+        $html = $this->renderView('prescription/pdf_template.html.twig', [
+            'prescription' => $data,
+        ]);
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+
+
+        $dompdf->render();
+
+
+        return new Response($dompdf->output(), Response::HTTP_OK, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="prescription_' . $prescription->getId() . '.pdf"',
+        ]);
+    }
+
+
+    #[Route('/drug-search', name: 'drug_search')]
+    public function searchDrug(Request $request, DrugService $drugService): Response
+    {
+        $drugName = $request->query->get('drugName');
+        $drugDetails = null;
+
+        if ($drugName) {
+            $drugDetails = $drugService->searchDrug($drugName);
+        }
+
+        // Render the same `show.html.twig` with additional `drugDetails` or a separate template as needed
+        return $this->render('prescription/show.html.twig', [
+            'drugDetails' => $drugDetails,
+            // Pass other required variables for the `show.html.twig` template
+        ]);
     }
 }

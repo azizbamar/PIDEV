@@ -38,9 +38,28 @@
         </tbody>
     </table>
 
+    <form action="{{ path('drug_search') }}" method="get">
+        <label for="drugName">Search Medicine:</label>
+        <input type="text" id="drugName" name="drugName" placeholder="Enter medicine name">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if drugDetails is defined %}
+        {# Display drug details here #}
+        <div>
+            <h2>Drug Information:</h2>
+            {# Example: Display the name #}
+            <p>Name: {{ drugDetails.name }}</p>
+        </div>
+    {% endif %}
+
     <a href="{{ path('app_prescription_index') }}">back to list</a>
 
     <a href="{{ path('app_prescription_edit', {'id': prescription.id}) }}">edit</a>
+
+    <a href="{{ path('prescription_export_pdf', {'id': prescription.id}) }}" class="btn btn-primary">Exporter en PDF</a>
+
+
 
     {{ include('prescription/_delete_form.html.twig') }}
 {% endblock %}

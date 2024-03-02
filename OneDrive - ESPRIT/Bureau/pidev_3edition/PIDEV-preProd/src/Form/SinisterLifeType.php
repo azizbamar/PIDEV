@@ -18,7 +18,6 @@ class SinisterLifeType extends AbstractType
             ->add('dateSinister')
             ->add('location')
             ->add('amountSinister')
-            ->add('statusSinister')
             ->add('description')
             ->add('beneficiaryName')
             ->add('sinisterUser')

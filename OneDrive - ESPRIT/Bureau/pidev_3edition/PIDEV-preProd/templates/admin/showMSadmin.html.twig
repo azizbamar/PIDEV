@@ -1,62 +1,55 @@
 {% extends 'base2.html.twig' %}
 
-{% block title %}MedicalSheet{% endblock %}
+{% block title %}Administration - Feuilles Médicales{% endblock %}
 
 {% block body %}
-    <h1>MedicalSheet</h1>
+    <h1>Liste des Feuilles Médicales</h1>
 
     <table class="table">
+        <thead>
+        <tr>
+
+            <th>Diagnostic Médical</th>
+            <th>Plan de Traitement</th>
+            <th>Rapports Médicaux</th>
+            <th>Durée d'Incapacité</th>
+            <th>Procédure Effectuée</th>
+            <th>Durée du Congé Maladie</th>
+            <th>Période d'Hospitalisation</th>
+            <th>Période de Rééducation</th>
+            <th>Informations Médicales</th>
+            <th>Nom du Client</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
         <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ medical_sheet.id }}</td>
-        </tr>
-        <tr>
-            <th>Medical Diagnosis</th>
-            <td>{{ medical_sheet.medicalDiagnosis }}</td>
-        </tr>
-        <tr>
-            <th>Treatment Plan</th>
-            <td>{{ medical_sheet.treatmentPlan }}</td>
-        </tr>
-        <tr>
-            <th>Medical Reports</th>
-            <td>{{ medical_sheet.medicalReports }}</td>
-        </tr>
-        <tr>
-            <th>Duration Of Incapacity</th>
-            <td>{{ medical_sheet.durationOfIncapacity }}</td>
-        </tr>
-        <tr>
-            <th>Procedure Performed</th>
-            <td>{{ medical_sheet.procedurePerformed }}</td>
-        </tr>
-        <tr>
-            <th>Sick Leave Duration</th>
-            <td>{{ medical_sheet.sickLeaveDuration }}</td>
-        </tr>
-        <tr>
-            <th>Hospitalization Period</th>
-            <td>{{ medical_sheet.hospitalizationPeriod }}</td>
-        </tr>
-        <tr>
-            <th>Rehabilitation Period</th>
-            <td>{{ medical_sheet.rehabilitationPeriod }}</td>
-        </tr>
-        <tr>
-            <th>Medical Information</th>
-            <td>{{ medical_sheet.medicalInformation }}</td>
-        </tr>
-        <tr>
-            <th>Client Name</th>
-            <td>{{ medical_sheet.userCIN }}</td>
-        </tr>
+        {% for medical_sheet in medical_sheets %}
+            <tr>
+
+                <td>{{ medical_sheet.medicalDiagnosis }}</td>
+                <td>{{ medical_sheet.treatmentPlan }}</td>
+                <td>{{ medical_sheet.medicalReports }}</td>
+                <td>{{ medical_sheet.durationOfIncapacity }}</td>
+                <td>{{ medical_sheet.procedurePerformed }}</td>
+                <td>{{ medical_sheet.sickLeaveDuration }}</td>
+                <td>{{ medical_sheet.hospitalizationPeriod }}</td>
+                <td>{{ medical_sheet.rehabilitationPeriod }}</td>
+                <td>{{ medical_sheet.medicalInformation }}</td>
+                <td>{{ medical_sheet.userCIN }}</td>
+                <td>
+                    <a href="{{ path('app_medical_sheet_show_dashboard', {'id': medical_sheet.id}) }}">Voir</a> |
+                    <a href="{{ path('app_medical_sheet_edit', {'id': medical_sheet.id}) }}">Modifier</a> |
+                    {{ include('medical_sheet/_delete_form.html.twig', {'id': medical_sheet.id}) }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">Aucune feuille médicale trouvée.</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_medical_sheet_index') }}">Back to list</a>
+    <a href="{{ path('app_admin') }}">Retour au tableau de bord administrateur</a>
 
-    <a href="{{ path('app_medical_sheet_edit', {'id': medical_sheet.id}) }}">edit</a>
-
-    {{ include('medical_sheet/_delete_form.html.twig') }}
 {% endblock %}

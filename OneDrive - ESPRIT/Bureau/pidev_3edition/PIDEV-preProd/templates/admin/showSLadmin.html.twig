@@ -8,7 +8,6 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
             <th>Date Sinister</th>
             <th>Location</th>
             <th>Amount Sinister</th>
@@ -21,7 +20,6 @@
         <tbody>
         {% for sinister_life in sinister_lives %}
             <tr>
-                <td>{{ sinister_life.id }}</td>
                 <td>{{ sinister_life.dateSinister ? sinister_life.dateSinister|date('Y-m-d') : '' }}</td>
                 <td>{{ sinister_life.location }}</td>
                 <td>{{ sinister_life.amountSinister }}</td>
@@ -29,8 +27,8 @@
                 <td>{{ sinister_life.description }}</td>
                 <td>{{ sinister_life.beneficiaryName }}</td>
                 <td>
-                    <a href="{{ path('app_sinister_life_show', {'id': sinister_life.id}) }}">Show</a>
-                    <a href="{{ path('app_sinister_life_edit', {'id': sinister_life.id}) }}">Edit</a>
+                    <a href="{{ path('app_sinister_life_show_dashboard', {'id': sinister_life.id}) }}">Show</a>
+
                 </td>
             </tr>
         {% else %}
@@ -41,5 +39,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_sinister_life_new') }}">Create new</a>
+    <a href="{{ path('app_admin') }}">Retour au tableau de bord administrateur</a>
 {% endblock %}
