@@ -45,9 +45,9 @@
                     <td>
                          <a class="btn btn-success" href="{{ path('app_constat_showAdmin', {'id': sinister_vehicle.id}) }}">show</a>
                         {% if sinister_vehicle.StatusSinister == 'en_cours' %}
-                            <a class="btn btn-warning" href="{{ path('app_rapport_new') }}">traiter</a>
+                            <a class="btn btn-warning" href="{{ path('app_rapport_new', {'id': sinister_vehicle.id}) }}">traiter</a>
                         {% elseif sinister_vehicle.StatusSinister == 'traité' %}
-                            <a class="btn btn-primary" href="{{ path('app_rapport_edit', {'id': sinister_vehicle.id}) }}">Modifier</a>
+                          
                         {% endif %}
                     </td>
                 </tr>

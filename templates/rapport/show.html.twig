@@ -24,8 +24,13 @@
                 <td>{{ rapport.sinisterRapport.location }}</td>
             </tr>
             <tr>
+                      
+</tr>
         </tbody>
     </table>
+       <form action="{{ path('rapport.pdf', {'id': rapport.id}) }}" method="get" style="display: inline;">
+    <button type="submit" class="btn btn-primary">Télecharger le contrat</button>
+</form>
 
 
 {% endblock %}

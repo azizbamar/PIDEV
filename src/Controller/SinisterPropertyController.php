@@ -5,8 +5,9 @@ namespace App\Controller;
 use App\Entity\SinisterProperty;
 use App\Form\SinisterPropertyType;
 use App\Repository\SinisterPropertyRepository;
-
+use App\Entity\Rapport;
 use App\Repository\SinisterRepository;
+use App\Repository\RapportRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +20,7 @@ use Knp\Component\Pager\PaginatorInterface;
 class SinisterPropertyController extends AbstractController
 {
     #[Route('/', name: 'app_sinister_property_index', methods: ['GET'])]
-    public function index(PaginatorInterface $paginator , SinisterPropertyRepository $sinisterPropertyRepository, Request $request): Response
+    public function index(PaginatorInterface $paginator , SinisterPropertyRepository $sinisterPropertyRepository, RapportRepository $rapportRepository, Request $request): Response
     {
         $pagination = $paginator->paginate(
             $sinisterPropertyRepository->findAll(),
@@ -28,6 +29,7 @@ class SinisterPropertyController extends AbstractController
         );
         return $this->render('sinister_property/index.html.twig', [
             'sinister_properties' =>   $pagination,
+            'rapport' =>  $rapportRepository->findAll()
         ]);
     }
     
@@ -89,8 +91,10 @@ class SinisterPropertyController extends AbstractController
     #[Route('/{id}', name: 'app_sinister_property_show_admin', methods: ['GET'])]
     public function show(SinisterProperty $sinisterProperty): Response
     {
+        
         return $this->render('sinister_property/show_admin.html.twig', [
             'sinister_property' => $sinisterProperty,
+          
         ]);
     }
 

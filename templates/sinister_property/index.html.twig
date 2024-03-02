@@ -55,9 +55,10 @@
                     <td>
                         <a class="btn btn-success" href="{{ path('app_sinister_property_show_admin', {'id': sinister_property.id}) }}">show</a>
                         {% if sinister_property.StatusSinister == 'en_cours' %}
-                            <a class="btn btn-warning" href="{{ path('app_rapport_new') }}">traiter</a>
+                            <a class="btn btn-warning" href="{{ path('app_rapport_new', {'id': sinister_property.id })}}">traiter</a>
                         {% elseif sinister_property.StatusSinister == 'traité' %}
-                            <a class="btn btn-primary" href="{{ path('app_rapport_edit', {'id': sinister_property.id}) }}">Modifier</a>
+                      
+
                         {% endif %}
                     </td>
                 </tr>

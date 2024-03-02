@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Rapport;
 use App\Form\RapportType;
 use App\Repository\RapportRepository;
+use App\Repository\SinisterRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,10 +38,11 @@ class RapportController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_rapport_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/new/{id}', name: 'app_rapport_new', methods: ['GET', 'POST'])]
+    public function new($id,Request $request, EntityManagerInterface $entityManager, SinisterRepository $sinisterRepository): Response
     {
         $rapport = new Rapport();
+        $rapport->setSinisterRapport($sinisterRepository->find($id));
         $form = $this->createForm(RapportType::class, $rapport);
         $form->handleRequest($request);
 
@@ -49,21 +51,21 @@ class RapportController extends AbstractController
             $entityManager->flush();
 
             // Fetch the associated Sinister
-            $sinister = $rapport->getSinisterRapport();
+            $sinister = $sinisterRepository->find($id);
 
             // Check if Sinister is present and set its status to "traité"
             if ($sinister) {
                 $sinister->setStatusSinister('traité');
                 $entityManager->flush();
-                $userPhoneNumber = $sinister->getSinisterUser()->getPhoneNumber();
-                $countryCode = '+216';
-                $fullPhoneNumber = $countryCode . $userPhoneNumber;
+                //$userPhoneNumber = $sinister->getSinisterUser()->getPhoneNumber();
+                //$countryCode = '+216';
+                //$fullPhoneNumber = $countryCode . $userPhoneNumber;
 
                 // Send the SMS
-                $this->twilioService->sendSms(
-                    $fullPhoneNumber,
-                    'Your Sinister has been treated successfully! Thank you for using our service.'
-                );
+                // $this->twilioService->sendSms(
+                //     $fullPhoneNumber,
+                //     'Your Sinister has been treated successfully! Thank you for using our service.'
+                // );
             }
 
             return $this->redirectToRoute('app_rapport_index', [], Response::HTTP_SEE_OTHER);
@@ -74,21 +76,40 @@ class RapportController extends AbstractController
             'form' => $form,
         ]);
     }
-    #[Route('/{id}', name: 'app_rapport_showAdmin', methods: ['GET'])]
-    public function showAdmin(Rapport $rapport): Response
+    #[Route('/{id}', name: 'app_rapport_show_admin', methods: ['GET'])]
+    public function showAdmin($id,Rapport $rapport, RapportRepository $rapportRepository): Response
     {
+        
+        $rapportRepository->find($id);
         return $this->render('rapport/showAdmin.html.twig', [
             'rapport' => $rapport,
         ]);
     }
-
-    #[Route('/{id}', name: 'app_rapport_show', methods: ['GET'])]
-    public function show(Rapport $rapport): Response
+    
+    #[Route('/showrapport/hh/{id}', name: 'app_rapport_showhh', methods: ['GET'])]
+    public function showaa($id, RapportRepository $rapportRepository, SinisterRepository $sinisterRepository): Response
     {
+        // Retrieve the SinisterProperty based on the provided ID
+        $sinisterProperty = $sinisterRepository->find($id);
+    
+        // Check if SinisterProperty exists
+        if (!$sinisterProperty) {
+            throw $this->createNotFoundException('SinisterProperty not found');
+        }
+    
+        // Retrieve the associated Rapport
+        $rapport = $rapportRepository->findOneBy(['SinisterRapport' => $sinisterProperty]);
+    
+        // Check if Rapport exists
+        if (!$rapport) {
+            throw $this->createNotFoundException('Rapport not found for the given SinisterProperty');
+        }
+    
         return $this->render('rapport/show.html.twig', [
             'rapport' => $rapport,
         ]);
     }
+    
 
     #[Route('/{id}/edit', name: 'app_rapport_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Rapport $rapport, EntityManagerInterface $entityManager): Response
@@ -108,6 +129,7 @@ class RapportController extends AbstractController
         ]);
     }
 
+    
     #[Route('/{id}', name: 'app_rapport_delete', methods: ['POST'])]
     public function delete(Request $request, Rapport $rapport, EntityManagerInterface $entityManager): Response
     {

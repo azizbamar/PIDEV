@@ -28,7 +28,7 @@
                 <td>{{ rapport.id }}</td>
                 <td>{{ rapport.decision }}</td>
                 <td>
-                    <a class="btn btn-success" href="{{ path('app_rapport_show', {'id': rapport.id}) }}">show</a>
+                    <a class="btn btn-success" href="{{ path('app_rapport_show_admin', {'id': rapport.id}) }}">show rapport</a>
                     <a class="btn btn-warning" href="{{ path('app_rapport_edit', {'id': rapport.id}) }}">update</a>
                 </td>
             </tr>

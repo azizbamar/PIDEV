@@ -71,6 +71,14 @@
 
         <table>
             <tr>
+                <th>Date Sinister</th>
+                <td>{{ rapport.sinisterRapport.dateSinister|date('Y-m-d') }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ rapport.sinisterRapport.location }}</td>
+            </tr>
+            <tr>
                 <th>Décision :</th>
                 <td>{{rapport.decision}}</td>
             </tr>
@@ -78,6 +86,7 @@
                 <th>Justification :</th>
                 <td>{{rapport.Justification}}</td>
             </tr>
+
         </table>
 
         <p class="quote">"Votre assurance, la promesse d'une épaule solide lorsque la vie devient imprévisible."</p>

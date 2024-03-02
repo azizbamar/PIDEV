@@ -25,9 +25,8 @@
             </tr>
             <tr>
                 <th> actions</th>
-                <td> <a href="{{ path('sinister_details', {'id': rapport.sinisterRapport.id}) }}" class="btn btn-primary">Voir plus de détails à propos du sinistre</a>
                    <a href="{{ path('app_rapport_index') }}"" class="btn btn-primary">Back to list</a> 
-               <a href="{{ path('app_rapport_edit', {'id': rapport.id}) }}"" class="btn btn-primary">traiter</a></td>
+               <a href="{{ path('app_rapport_edit', {'id': rapport.id}) }}"" class="btn btn-primary">Modifier</a></td>
 
 
                <form action="{{ path('rapport.pdf', {'id': rapport.id}) }}" method="get" style="display: inline;">

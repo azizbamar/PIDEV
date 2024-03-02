@@ -1,9 +1,19 @@
 <body>
   <main>
     <div class="container">
-
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
       <section class="">
- 
+  {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                {{ message|raw }}
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endfor %}
         <div class="card mb-3" style= "margin-bottom:50%">
           <div class="card-body">
             {{ form_start(form, {'attr': {'class': 'row g-3 needs-validation', 'novalidate': 'novalidate', 'enctype': 'multipart/form-data'}}) }}
