@@ -1,0 +1,26 @@
+{# templates/two_factor_authentication/index.html.twig #}
+
+{% extends 'client/index2.html.twig' %}
+
+{% block title %}Two-Factor Authentication{% endblock %}
+
+{% block content %}
+    <div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+        <div class="col-md-6 text-center">
+            <h1>Two-Factor Authentication</h1>
+
+            {% if app.flashes('error') %}
+                <div class="alert alert-danger">
+                    {{ app.flashes('error')[0] }}
+                </div>
+            {% endif %}
+
+            <p>Enter the code sent to your email:</p>
+            <form method="post">
+                <label for="code">Code:</label>
+                <input type="text" id="code" name="code" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
