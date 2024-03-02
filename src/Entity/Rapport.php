@@ -17,7 +17,6 @@ class Rapport
     #[Assert\NotBlank(message: 'veuillez préciser votre décision')]
     private ?string $decision = null;
 
-    #[Assert\NotBlank(message: 'veuillez selectionner un sinistre')]
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Sinister $SinisterRapport = null;
 

@@ -24,11 +24,7 @@ class RapportType extends AbstractType
                 'placeholder' => 'Sélectionnez une décision', 
                 
             ])
-            ->add('SinisterRapport', EntityType::class, [
-                'class' => Sinister::class,
-                
-                'placeholder' => 'Sélectionnez un sinistre',
-            ])
+       
             ->add('justification', TextareaType::class, [
                 'label' => 'Justification',
                

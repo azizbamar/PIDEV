@@ -11,7 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\TwilioService; // Add this use statement
-
+use Knp\Component\Pager\PaginatorInterface;
+use App\Service\PdfService;
 #[Route('/rapport')]
 class RapportController extends AbstractController
 {
@@ -24,10 +25,15 @@ class RapportController extends AbstractController
     }
 
     #[Route('/', name: 'app_rapport_index', methods: ['GET'])]
-    public function index(RapportRepository $rapportRepository): Response
+    public function index(PaginatorInterface $paginator, RapportRepository $rapportRepository, Request $request): Response
     {
+        $pagination = $paginator->paginate(
+            $rapportRepository->findAll(),
+            $request->query->getInt('page', 1), // Get the page number from the request
+            5 // Number of items per page
+        );
         return $this->render('rapport/index.html.twig', [
-            'rapports' => $rapportRepository->findAll(),
+            'rapports' => $pagination,
         ]);
     }
 
@@ -112,4 +118,12 @@ class RapportController extends AbstractController
 
         return $this->redirectToRoute('app_rapport_index', [], Response::HTTP_SEE_OTHER);
     }
+    #[Route('/pdf/{id}', name: 'rapport.pdf')]
+public function generatePdfPersonne(Rapport $rapport = null, PdfService $pdf) {
+    $html = $this->render('rapport/showPdf.html.twig', ['rapport' => $rapport]);
+    $pdf->showPdfFile($html);
+    return new RedirectResponse($this->generateUrl('app_rapport_show', ['id' => $rapport->getId()]));
+
+}
+
 }

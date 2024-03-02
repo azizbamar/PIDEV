@@ -13,18 +13,24 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
-
+use Knp\Component\Pager\PaginatorInterface;
 
 #[Route('/sinister/property')]
 class SinisterPropertyController extends AbstractController
 {
     #[Route('/', name: 'app_sinister_property_index', methods: ['GET'])]
-    public function index(SinisterPropertyRepository $sinisterPropertyRepository): Response
+    public function index(PaginatorInterface $paginator , SinisterPropertyRepository $sinisterPropertyRepository, Request $request): Response
     {
+        $pagination = $paginator->paginate(
+            $sinisterPropertyRepository->findAll(),
+            $request->query->getInt('page', 1), // Get the page number from the request
+            5 // Number of items per page
+        );
         return $this->render('sinister_property/index.html.twig', [
-            'sinister_properties' => $sinisterPropertyRepository->findAll(),
+            'sinister_properties' =>   $pagination,
         ]);
     }
+    
     #[Route('/usersinistre/{userId}', name: 'app_user_sinister', methods: ['GET', 'POST'])]
 
     public function sinistresByUser(SinisterRepository $sinistreRepository, $userId): Response
@@ -37,7 +43,7 @@ class SinisterPropertyController extends AbstractController
         ]);
     }
     #[Route('/new', name: 'app_sinister_property_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SinisterPropertyRepository $sinisterPropertyRepository): Response
     {
         // Fetch the user based on the static ID
         $staticUserId = 10; // Replace with the actual static user ID
@@ -58,10 +64,10 @@ class SinisterPropertyController extends AbstractController
             $entityManager->flush();
 
             $message = "Votre déclaration de sinistre habitation a été enregistrée. Un expert la traitera et vous contactera pour plus d'informations.";
-
-            return $this->render('sinister_property/new_success.html.twig', [
+                $this-> addFlash('success',$message);
+            return $this->render('sinister_property/indexC.html.twig', [
                 'message' => $message,
-                'sinister_property' => $sinisterProperty,
+                'sinister_properties' => $sinisterPropertyRepository->findAll(),
             ]);
         }
 

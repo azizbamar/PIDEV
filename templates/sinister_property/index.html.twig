@@ -1,6 +1,5 @@
 {% extends 'admin/index.html.twig' %}
 
-
 {% block title %}Liste Des Sinistres Habitation{% endblock %}
 
 {% block profile %}
@@ -23,16 +22,16 @@
             <option value="traité">Traité</option>
         </select>
     </div>
-     <div>
+
+    <div>
         <label for="filterByDamageType">Filtrer par Type de Dégât:</label>
         <select id="filterByDamageType">
             <option value="all">Tous</option>
             <option value="volé">volé</option>
             <option value="incendié">incendié</option>
             <option value="inondé">inondé</option>
-            
         </select>
-    </div>
+  </div>
 
     <table class="table">
         <thead>
@@ -46,13 +45,20 @@
         </thead>
         <tbody id="sinisterTableBody">
             {% for sinister_property in sinister_properties %}
-                <tr>
+                  <tr>
                     <td>{{ sinister_property.id }}</td>
                     <td>{{ sinister_property.dateSinister ? sinister_property.dateSinister|date('Y-m-d') : '' }}</td>
                     <td>{{ sinister_property.typeDegat }}</td>
-                    <td>{{ sinister_property.StatusSinister }}</td>
+                    <td style="color: {% if sinister_property.StatusSinister == 'traité' %}green{% elseif sinister_property.StatusSinister == 'en_cours' %}orange{% endif %}">
+                        {{ sinister_property.StatusSinister }}
+                    </td>
                     <td>
-                        <a href="{{ path('app_sinister_property_show', {'id': sinister_property.id}) }}">show</a>
+                        <a class="btn btn-success" href="{{ path('app_sinister_property_show_admin', {'id': sinister_property.id}) }}">show</a>
+                        {% if sinister_property.StatusSinister == 'en_cours' %}
+                            <a class="btn btn-warning" href="{{ path('app_rapport_new') }}">traiter</a>
+                        {% elseif sinister_property.StatusSinister == 'traité' %}
+                            <a class="btn btn-primary" href="{{ path('app_rapport_edit', {'id': sinister_property.id}) }}">Modifier</a>
+                        {% endif %}
                     </td>
                 </tr>
             {% else %}
@@ -62,7 +68,11 @@
             {% endfor %}
         </tbody>
     </table>
-
+    <nav aria-label="Page navigation example">
+        <ul class="pagination " style="float: right;">
+            {{ knp_pagination_render(sinister_properties) }}
+        </ul>
+    </nav>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
@@ -98,6 +108,16 @@
                     }
                 }).appendTo("#sinisterTableBody");
             }
+
+            // Function to color decisions
+            $("#sinisterTableBody tr").each(function() {
+                var rowStatus = $(this).find("td:eq(3)").text(); 
+                if (rowStatus === "traité") {
+                    $(this).find("td:eq(3)").css("color", "green");
+                } else if (rowStatus === "en_cours") {
+                    $(this).find("td:eq(3)").css("color", "orange");
+                }
+            });
         });
-        </script>
+    </script>
 {% endblock %}

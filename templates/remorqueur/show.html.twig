@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/dashboard.html.twig' %}
 
 {% block title %}Remorqueur{% endblock %}
 
-{% block body %}
+{% block profile %}
     <h1>Remorqueur</h1>
 
     <table class="table">
@@ -34,9 +34,11 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_remorqueur_index') }}">back to list</a>
+ <a href="{{ path('app_remorqueur_index') }}" class="btn btn-secondary mt-3">Back to List</a>
 
-    <a href="{{ path('app_remorqueur_edit', {'id': remorqueur.id}) }}">edit</a>
+            <!-- Edit button -->
+            <a href="{{ path('app_remorqueur_edit', {'id': remorqueur.id}) }}" class="btn btn-warning mt-3">Edit</a>
+
 
     {{ include('remorqueur/_delete_form.html.twig') }}
 {% endblock %}

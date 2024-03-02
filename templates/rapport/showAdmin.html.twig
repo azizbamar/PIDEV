@@ -15,7 +15,6 @@
                 <th>Decision</th>
                 <td>{{ rapport.decision }}</td>
             </tr>
-            {# Add Sinister details here #}
             <tr>
                 <th>Date Sinister</th>
                 <td>{{ rapport.sinisterRapport.dateSinister|date('Y-m-d') }}</td>
@@ -29,6 +28,11 @@
                 <td> <a href="{{ path('sinister_details', {'id': rapport.sinisterRapport.id}) }}" class="btn btn-primary">Voir plus de détails à propos du sinistre</a>
                    <a href="{{ path('app_rapport_index') }}"" class="btn btn-primary">Back to list</a> 
                <a href="{{ path('app_rapport_edit', {'id': rapport.id}) }}"" class="btn btn-primary">traiter</a></td>
+
+
+               <form action="{{ path('rapport.pdf', {'id': rapport.id}) }}" method="get" style="display: inline;">
+    <button type="submit" class="btn btn-primary">Télecharger le contrat</button>
+</form>
             </tr>
         </tbody>
     </table>
