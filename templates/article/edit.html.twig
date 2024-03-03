@@ -8,8 +8,9 @@
 
     {{ include('article/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('app_article_index') }}">Retour</a>
-
+    <a class="btn btn-primary" href="{{ path('app_article_index') }}">Retour</a>
+<table class="table table-striped">
     {{ include('article/_delete_form.html.twig') }}
+</table>
         </center>
 {% endblock %}

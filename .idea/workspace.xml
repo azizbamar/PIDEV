@@ -4,18 +4,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79951745-41cf-4767-8d65-b06beeeae623" name="Changes" comment="crud+template">
+    <list default="true" id="79951745-41cf-4767-8d65-b06beeeae623" name="Changes" comment="flashy bundle + (pdf in progress+commentBOX.io)">
+      <change afterPath="$PROJECT_DIR$/src/Controller/PaginatorInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/PdfService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/article/showPdf.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/phpspec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpspec.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/notifier.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/notifier.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/FrontOffice/img/portfolio/portfolio-details-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/FrontOffice/img/portfolio/portfolio-details-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/FrontOffice/img/testimonials/testimonials-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/FrontOffice/img/testimonials/testimonials-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/FrontOffice/img/testimonials/testimonials-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/FrontOffice/img/testimonials/testimonials-4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/FrontOffice/img/testimonials/testimonials-5.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ClientArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ClientArticleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ClientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ClientController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/CommentType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CommentType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/CommentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CommentRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/_delete_form.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/article/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/edit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/article/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/basearticle.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/basearticle.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/baseback.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseback.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/client_article/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client_article/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/comment/comment.twig.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/comment/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comment/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/comment/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comment/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/comment/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comment/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/comment/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comment/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/comment/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comment/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/comment/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comment/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,12 +59,34 @@
     </execution>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="Gestion_Actualite" />
+              </list>
+            </value>
+          </entry>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/Gestion_Actualite" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="actualité" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -177,7 +229,16 @@
       <path value="$PROJECT_DIR$/vendor/mercuryseries/flashy-bundle" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-snappy" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-snappy-bundle" />
+      <path value="$PROJECT_DIR$/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/symfony/twilio-notifier" />
     </include_path>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -195,7 +256,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Gestion__Actualite&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/3eme annee/pidev/pidev3A44&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/custom projet/dev-crown-symfony&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -273,6 +334,15 @@
       <workItem from="1709310588890" duration="15000" />
       <workItem from="1709322015235" duration="5639000" />
       <workItem from="1709327947958" duration="24000" />
+      <workItem from="1709334537308" duration="1328000" />
+      <workItem from="1709336164807" duration="4000" />
+      <workItem from="1709336208964" duration="10000" />
+      <workItem from="1709336462224" duration="15000" />
+      <workItem from="1709336660772" duration="115000" />
+      <workItem from="1709377024706" duration="28714000" />
+      <workItem from="1709463133241" duration="4387000" />
+      <workItem from="1709468585536" duration="470000" />
+      <workItem from="1709472774501" duration="11990000" />
     </task>
     <task id="LOCAL-00001" summary="crud+template">
       <option name="closed" value="true" />
@@ -282,7 +352,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708532891416</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="flashy bundle + (pdf in progress+commentBOX.io)">
+      <option name="closed" value="true" />
+      <created>1709329829041</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1709329829041</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,6 +379,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="crud+template" />
-    <option name="LAST_COMMIT_MESSAGE" value="crud+template" />
+    <MESSAGE value="flashy bundle + (pdf in progress+commentBOX.io)" />
+    <option name="LAST_COMMIT_MESSAGE" value="flashy bundle + (pdf in progress+commentBOX.io)" />
   </component>
 </project>

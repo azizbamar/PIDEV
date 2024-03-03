@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Comment;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\AbstractType;
@@ -29,8 +30,10 @@ class CommentType extends AbstractType
             'expanded' => true,
             'multiple' => false,
             'label' => 'rate',
-        ])
-        ;
+            'choice_attr' => function($choice, $key, $value) {
+                return ['class' => 'star', 'data-value' => $value]; // Add class and data-value attributes to each choice
+            },
+        ]);
     }
 
 

@@ -5,10 +5,9 @@
 {% block content1 %}
 <center>
     <h1>Modifier Commentaire</h1>
+    {{ include('comment/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    {{ include('comment/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_comment_index') }}">back to list</a>
+    <a class="btn-lg"href="{{ path('app_comment_index') }}">back to list</a>
 
     {{ include('comment/_delete_form.html.twig') }}
     </center>

@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ClientController extends AbstractController
 {
     #[Route('/client', name: 'app_client')]
-    public function client(ArticleRepository $articleRepository,FlashyNotifier $flashy): Response
+    public function client(ArticleRepository $articleRepository,FlashyNotifier $flashy ): Response
     {
 
         $flashy->success('explorer notre articles !', 'http://your-awesome-link.com');

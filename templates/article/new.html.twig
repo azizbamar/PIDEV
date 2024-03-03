@@ -31,7 +31,7 @@
             box-sizing: border-box;
         }
         input[type="submit"] {
-            background-color: #007bff;
+            background-color: #02024d;
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -39,13 +39,13 @@
             cursor: pointer;
         }
         input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: #02024d;
         }
         a {
             display: block;
             text-align: center;
             margin-top: 20px;
-            color: #007bff;
+            color: #02024d;
             text-decoration: none;
         }
         a:hover {
@@ -60,8 +60,8 @@
 
      {{ include('article/_form.html.twig') }}
 
-    <a href="{{ path('app_article_index') }}">Retour</a>
 
+    <a  class="btn btn-primary" href="{{ path('app_article_index') }}">Retour</a>
 
         </center>
 {% endblock %}

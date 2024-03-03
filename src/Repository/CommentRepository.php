@@ -45,4 +45,24 @@ class CommentRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function findById(\Symfony\Component\HttpFoundation\InputBag|float|bool|int|string|null $searchQuery)
+    {
+        //searsh by id
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.id = :val')
+            ->setParameter('val', $searchQuery)
+            ->orderBy('c.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
+
+    public function findAllQueryASC(): \Doctrine\ORM\Query
+    {   return $this->createQueryBuilder('c')
+        ->orderBy(sort:'c.id', order:'ASC')
+        ->getQuery();
+    }
 }

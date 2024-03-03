@@ -4,10 +4,12 @@
 
 {% block content1 %}
 <center>
+    <div class="container">
     <h1>commenter</h1>
-
+        {{ form_start(form) }}
     {{ include('comment/_form.html.twig') }}
 
    <a href="{{ path('app_comment_index') }}">Retour</a>
+        {{ form_start(form) }}
 </center>
 {% endblock %}

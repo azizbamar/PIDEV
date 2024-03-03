@@ -13,6 +13,15 @@
                     <h2>Articles</h2>
                     <p>Explorer notre actualité en navigant les derniers articles.</p>
                 </div>
+                <center>
+                <div class="row">
+                    <div class="col-lg-6 d-flex justify-content-center">
+                        <center>
+                        <div class="input-group center">
+                            <input type="text" id="searchInput" class="form-control" placeholder="Search articles...">
+                            <button id="searchButton" class="btn btn-primary">Search</button>
+                        </div></center>
+                    </div></center>
 
                 <div class="row">
                     <div class="col-lg-12 d-flex justify-content-center">
@@ -77,6 +86,48 @@
 
             </div>
         </section><!-- End Portfolio Section -->
+        <script>
+            $(document).ready(function() {
+                // Initialize DataTable
+                $('#articlesTable').DataTable({
+                    searching: true,
+                    paging: true,
+                    ordering: true,
+                    info: true
+                });
+
+                // Handle search button click event
+                $('#searchButton').click(function() {
+                    var searchText = $('#searchInput').val().trim().toLowerCase();
+                    var articlesFound = true;
+
+                    // Loop through each article and hide/show based on search text
+                    $('.portfolio-item').each(function() {
+                        var articleTitle = $(this).find('h4').text().trim().toLowerCase();
+                        if (articleTitle.includes(searchText)) {
+                            $(this).show();
+                            articlesFound = false;
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                    if (!articlesFound) {
+                        // Use AJAX to trigger Flashy message
+                        $.ajax({
+                            url: '{{ path('app_client') }}',
+                            type: 'POST',
+                            data: { message: 'Article not found', type: 'error' },
+                            success: function(response) {
+                                // Handle success response if needed
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Error triggering Flashy message:', error);
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
     </main>
 
 
