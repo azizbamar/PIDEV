@@ -77,14 +77,23 @@ class QuestionController extends AbstractController
 
 
     #[Route('/{id}/edit', name: 'app_question_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Question $question, EntityManagerInterface $entityManager,FlashyNotifier $flashy): Response
+    public function edit($id,QuestionRepository $questionRepository,Request $request, Question $question, EntityManagerInterface $entityManager,FlashyNotifier $flashy): Response
     {
+
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-            $flashy->success('Question updated !');
+            $uow = $entityManager->getUnitOfWork();
+            $uow->computeChangeSets();
+
+            $changes = $uow->getEntityChangeSet($question);
+            if (count($changes) > 0) {
+                $entityManager->flush();
+                $flashy->success('Question updated !');
+            } else {
+                $flashy->warning('No modication detected !');
+            }
 
             return $this->redirectToRoute('app_question_index', [], Response::HTTP_SEE_OTHER);
         }

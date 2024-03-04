@@ -131,6 +131,12 @@
                 radioButton.checked = true;
  
             }
+            if (currentQuestionIndex < {{ questions|length-1 }}) {
+
+            const nextButton = document.getElementById('next-question');
+            nextButton.hidden = false;
+
+            }
         }
 
         function showNext() {
@@ -139,7 +145,18 @@
                 showQuestion(currentQuestionIndex);
                 disableNextButton(); // Always disable next button after moving to the next question
 
+
             }
+
+            
+            if (currentQuestionIndex == {{ questions|length-1 }}) {
+                console.log("aaaaaa");
+
+            const nextButton = document.getElementById('next-question');
+            nextButton.hidden = true;
+
+            }
+
         }
 
         function enableNextButton() {
